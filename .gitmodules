@@ -1,0 +1,3 @@
+[submodule "tum-thesis-latex"]
+	path = tum-thesis-latex
+	url = https://github.com/fwalch/tum-thesis-latex.git

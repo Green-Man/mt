@@ -157,3 +157,12 @@ pythontex-files-*/
 
 # Latexian
 TSWLatexianTemp*
+/main.pdf
+/tempPartial00000.pdf
+
+#Eclipse
+.project
+.texlipse
+.settings
+
+refs_pdf/

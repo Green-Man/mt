@@ -1,10 +1,61 @@
 \chapter{Introduction}
 \label{chapter:Introduction}
 
-Here starts the thesis with an introduction. Please use nice latex and bibtex entries \cite{latex}. Do not spend time on formating your thesis, but on its content. 
- 
-\section{Latex Introduction}
-There is no need for a latex introduction since there is plenty of literature out there.
- 
-\section{Another section}
-Let's make a reference \cite{Clinton09}\cite{Cook87}
+\section{Intro}
+\subsection{Real world meterial approach}
+\begin{itemize}
+    \item Organics
+    \begin{itemize}
+      \item Skin (sweaty, dry, makeup)
+      \item Fruits (layered, uniform)
+    \end{itemize}
+    \item Non-organic
+    \begin{itemize}
+      \item Marble (polished, rough, dusty)
+      \item Plastics (wax, etc othe non-organic uniform solid bodies)
+    \end{itemize}
+    \item Liquids (milk, wine, juice, dirty/dusty water)
+    \item Fluids (air, fog, dust)
+    \item Thin sheets (paper, foilage, cloth)
+    \item Non photoreal (Cartoon style and stylisation)
+\end{itemize}
+
+\subsection{Things to consiger while choosing method}
+\begin{description}
+  \item [Lighting restrictions] \emph{Analytic light} sources and \emph{area lights and IBL} friendly
+  \item [Multiple object friendly]
+  \item [Preprocess] Is additional preprocess step needed (point cloud generation)
+  \item [Parametrization] Artist friendly or physically correct
+  \item [Performance] Is it a real time approximation for OpenGL
+  \item [Flickering] How suitable for animation (does it introduce additional flickering)
+  \item [Motion blur] How well it works with motion blur (SSS and volumetrics)
+  \item [Closed objecs only] Does it supports single sided geometry
+  \item Homogeneous or inhomogeneous
+  \item Istropic or anisoisotropic media
+\end{description}
+
+
+\section{Skin}
+Cubic, Gaussean (sum from GPU gems), Cristensebn-Burley falloffs (implemented in newest Cycles)
+
+\section{Quantized-diffusion model \cite{D'Eon:2011:QMR:1964921.1964951}}
+\begin{itemize}
+\item Improved diffusion theory
+\item Extended source term instead of just a dipole
+\item More realistic look with sharper features
+\item Much more complicated and time-consuming to calculate (DO I WANT TO COMPARE PERFORMANCE?)
+\end{itemize}
+The resulting diffuse reflectance profile was approximated as a sum of Gaussians.
+
+\section{Photon Beam diffusion \cite{Habel:2013:PBD:2600890.2600896}}
+The photon beam diffusion had three main contributions:
+\begin{itemize}
+\item As accurate as quantized diffusion but much faster to evaluate,
+\item An accurate diffuse single-scattering model
+\item Elegant handling of oblique refraction into the material
+\end{itemize}
+
+\section{Cristensebn-Burley method \cite{Christensen:2015:ARP:2775280.2792555}}
+Diffusion models above require separate handling of single scattering, either by explicit ray tracing or separate integration.
+Both methods are slow. Cristensebn-Burley model includes single scattering, so no
+expensive separate calculation is needed.

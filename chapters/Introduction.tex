@@ -7,15 +7,17 @@
     \item Organics
     \begin{itemize}
       \item Skin (sweaty, dry, makeup)
-      \item Fruits (layered, uniform)
+      \item Fruits (layered, uniform, non-uniform)
+      \item Food (Cheese, meat, bread)
     \end{itemize}
     \item Non-organic
     \begin{itemize}
       \item Marble (polished, rough, dusty)
       \item Plastics (wax, etc othe non-organic uniform solid bodies)
     \end{itemize}
-    \item Liquids (milk, wine, juice, dirty/dusty water)
+    \item Liquids (milk, wine, juice, dirty/dusty water, ocean water)
     \item Fluids (air, fog, dust)
+    \item Snow
     \item Thin sheets (paper, foilage, cloth)
     \item Non photoreal (Cartoon style and stylisation)
 \end{itemize}
@@ -36,7 +38,18 @@
 
 
 \section{Skin}
-Cubic, Gaussean (sum from GPU gems), Cristensebn-Burley falloffs (implemented in newest Cycles)
+
+Cubic, Gaussean (sum from GPU gems),
+
+Cristensebn-Burley falloffs (implemented in newest Cycles)
+
+\cite{EGWR:EGSR06:409-417} has formulas for the absorption and reduced scattering of the human skin. Also a lot of skin rendering results.
+
+\section{Diffusion approximation}
+Main paper: A Practical Model for Subsurface Light Transport
+
+A Rapid Hierarchical Rendering Technique for Translucent Materials
+Introduces the idea of decoupling the calculations of surface illumination and the sub-surface scattering effect in a two-pass method; describes a fast hierarchical approach for evaluating subsurface scattering and proposes a reparametrization of the BSSRDF parameters for easier user adjustment.
 
 \section{Quantized-diffusion model \cite{D'Eon:2011:QMR:1964921.1964951}}
 \begin{itemize}

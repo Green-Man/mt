@@ -1,0 +1,77 @@
+\chapter{Theory}
+\label{chapter:Theory}
+
+\section{Skin}
+
+Cubic, Gaussean (sum from GPU gems),
+
+Cristensebn-Burley falloffs 
+
+\cite{EGWR:EGSR06:409-417} has formulas for the absorption and reduced scattering of the human skin. Also a lot of skin rendering results.
+
+\section{The Diffusion Approximation}
+Main paper: A Practical Model for Subsurface Light Transport \cite{Jensen:2001:PMS:383259.383319}
+
+Following: A Rapid Hierarchical Rendering Technique for Translucent Materials\\
+\cite{Jensen:2002:RHR:566570.566619} Introduces the idea of decoupling the calculations of surface
+illumination and the sub-surface scattering effect in a two-pass method;
+describes a fast hierarchical approach for evaluating subsurface scattering
+and proposes a reparametrization of the BSSRDF parameters for easier user adjustment.
+
+Applies in highly scattering media: relation to the Central Limit Theorem
+The approach underlying the application of diffusion approximations is comparable to that underlying normal approximation for
+sums of random variables. In the latter setting, the central limit theorem
+permits one to replace the analytically intractable sum of random variables by
+an appropriately chosen normal random variable.
+
+Donner et al. in \cite{Donner:2009:EBM} claim that the sum of single scattering
+simulation and diffusion approximation (isotropic multiple scattering) does not
+able to capture such materials as orange juice. Because a significant amount of
+light in scattered duirng to low-oreder scattering events and high absorbtion.
+These materials exhibit significant absorption of the light as it propagates
+through the material, so much of the energy is scattered back into
+the environment near the point of incidence. This light exits in areas and
+directions outside of the single scattering regime, but not in the high-order
+multiple scattering regime.
+
+In this work they use Monte Carlo particle tracing to tabulate an empirical
+BSSRDF model for a flat surface on a homogeneous semi-infinite volume.
+They represented the hemispherical distribution of light leaving the surface,
+depending on the angle of the incident light, the relative position of the
+exitant light, and the physical parameters (volume albedo, mean free path
+length, phase function, and index of refraction). Their tables took months to
+compute and contain around 250MB of data. (Still can't find thee data)
+
+\section{Summary of \textbf{Classical and Improved Diffusion Theory for
+Subsurface Scattering}}
+Tech report from Habel et al. \cite{habel13cid} is similar to \cite{Habel:2013:PBD:2600890.2600896}
+TODO: What is the difference
+From Radiance Transport Equation {insert it here} to the integral equation which
+computes the outgoing radiance, Lo, at position, direction (~ xo,~ wo) and
+BSSRDF \textit{insest one here}
+
+
+\section{Quantized-diffusion model}
+\cite{D'Eon:2011:QMR:1964921.1964951}\\
+\begin{itemize}
+    \item Improved diffusion theory
+    \item Extended source term instead of just a dipole
+    \item More realistic look with sharper features
+    \item Much more complicated and time-consuming to calculate (DO I WANT TO COMPARE PERFORMANCE?)
+\end{itemize}
+The resulting diffuse reflectance profile was approximated as a sum of Gaussians.
+
+\section{Photon Beam diffusion}
+The photon beam diffusion \cite{Habel:2013:PBD:2600890.2600896} had three main
+contributions:
+\begin{itemize}
+    \item As accurate as quantized diffusion but much faster to evaluate,
+    \item An accurate diffuse single-scattering model
+    \item Elegant handling of oblique refraction into the material
+\end{itemize}
+
+\section{Cristensebn-Burley method}
+(implemented in newest Cycles) \cite{Christensen:2015:ARP:2775280.2792555}\\
+Diffusion models above require separate handling of single scattering, either by explicit ray tracing or separate integration.
+Both methods are slow. Cristensebn-Burley model includes single scattering, so no
+expensive separate calculation is needed.

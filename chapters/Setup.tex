@@ -6,20 +6,44 @@ Perpendicular light beam to infinite surface \cite{Jacques1995}
 
 The term is: \gls{infiniteslab},
 
+\section{Parametrization}
+Artists prefer to define surface albedo and mean multiple scattering distance
+(characteristic or visible depth of the SSS). The radiative transport scattering
+coefficients must therefore be inferred by inverting the diffusion equation.
+
+The scattering was parameterized by the volume scattering and absorption
+coefficients $\sigma_s$ and $\sigma_a$ (or, equivalently, the volume
+scattering albedo $\alpha = \sigma_s/\sigma_t = \sigma_s/(\sigma_s + \sigma_a)$
+and volume mean free path length $l = 1/\sigma_t = 1/(\sigma_s + \sigma_a)$.)
+In follow-up work, Jensen and Buhler \cite{Jensen:2002:RHR:566570.566619}
+introduced a more intuitive parameterization of subsurface scattering:
+surface albedo (diffuse surface reflectance) $A = \int\limits_0^\infty
+R(r)2\pi r dr$ and diffuse mean free path length $l_d$ on the surface.
+
+Such “albedo inversion” must typically done with iterative or tabulated methods,
+both of which can have trouble with high albedos. Another challenge is that
+diffusion profiles are often too blurry given that they typically only model
+multiple scattering, leading to the use of two or more profiles combined in an
+ad hoc manner.
 
 \section{Diffusion profiles}
 \comment{Think about how to organize this section}
 \begin{itemize}
-  \item{Diffusion profiles can be measured from a real-world object by analyzing
-  scattering of laser \cite{Jensen:2001:PMS:383259.383319} or structured light
-  patterns \cite{tariq_efficient_2006-1} Big variaty of liquids by dilusion
-  was asquired in \cite{Narasimhan:2006:ASP:1141911.1141986} but only single
-  scattering component (is it right)
-  \item{And the most advanced method capturing both single and multple
-  scattering is described \cite{Gkioulekas:2013:IVR:2508363.2508377}}}
-\item{\cite{Nguyen:2007:GG:1407436} in \textit{GPU Gems 3} says that
-the dipole and multipole functions mentioned already can be used to compute diffusion profiles
-for any material with known scattering coefficients.
-}
-\item{While knowing the correct diffusion profiles one can use fitting tool to approximate them \cite{Nguyen:2007:GG:1407436}}
+    \item{Diffusion profiles can be measured from a real-world object by
+    analyzing scattering of laser \cite{Jensen:2001:PMS:383259.383319} or
+    structured light patterns \cite{tariq_efficient_2006-1} Big variaty of
+    liquids by dilusion was asquired in
+    \cite{Narasimhan:2006:ASP:1141911.1141986} but only single scattering
+    component (is it right)
+    \item{And the most advanced method capturing both single and multple
+    scattering is described \cite{Gkioulekas:2013:IVR:2508363.2508377}}}
+    \item{\cite{Nguyen:2007:GG:1407436} in \textit{GPU Gems 3} says that the
+    dipole and multipole functions mentioned already can be used to compute
+    diffusion profiles for any material with known scattering coefficients.
+    \item{In \cite{Frisvad:2014:DDM:2702692.2682629} introduces the directional
+    dipole}. This improves the accuracy for e.g. non-perpendicular (oblique)
+    illumination of objects with smooth refractive surfaces (such as milk, fruit
+    juice, and other liquids with suspended particles) }
+    \item{While knowing the correct diffusion profiles one can use fitting tool
+    to approximate them \cite{Nguyen:2007:GG:1407436}}
 \end{itemize}

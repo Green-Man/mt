@@ -10,7 +10,19 @@ Cristensebn-Burley falloffs
 \cite{EGWR:EGSR06:409-417} has formulas for the absorption and reduced scattering of the human skin. Also a lot of skin rendering results.
 
 \section{The Diffusion Approximation}
+Applies in highly scattering media: relation to the Central Limit Theorem
+The approach underlying the application of diffusion approximations is comparable to that underlying normal approximation for
+sums of random variables. In the latter setting, the central limit theorem
+permits one to replace the analytically intractable sum of random variables by
+an appropriately chosen normal random variable.
+
 Main paper: A Practical Model for Subsurface Light Transport \cite{Jensen:2001:PMS:383259.383319}
+
+Geometric assumption on the surface as a flat, semi-infinite slab at (any
+point). This is reasonable only if scattering distance is small with respect to
+surface curvature and thickness. \textbf{Multiple scattering} diffusion
+component is approximately determined. The \textbf{single scattering} is
+separately integrated.
 
 Following: A Rapid Hierarchical Rendering Technique for Translucent Materials\\
 \cite{Jensen:2002:RHR:566570.566619} Introduces the idea of decoupling the calculations of surface
@@ -18,16 +30,17 @@ illumination and the sub-surface scattering effect in a two-pass method;
 describes a fast hierarchical approach for evaluating subsurface scattering
 and proposes a reparametrization of the BSSRDF parameters for easier user adjustment.
 
-Applies in highly scattering media: relation to the Central Limit Theorem
-The approach underlying the application of diffusion approximations is comparable to that underlying normal approximation for
-sums of random variables. In the latter setting, the central limit theorem
-permits one to replace the analytically intractable sum of random variables by
-an appropriately chosen normal random variable.
+Quantized diffusion \cite{D'Eon:2011:QMR:1964921.1964951} and
+Improved diffusion \cite{Habel:2013:PBD:2600890.2600896} keeps the flat slab
+assumption, but imploves multiple scattering approximation. The computation cost
+is increased significantly.
 
+\comment{I like the reasoning here}
 Donner et al. in \cite{Donner:2009:EBM} claim that the sum of single scattering
 simulation and diffusion approximation (isotropic multiple scattering) does not
-able to capture such materials as orange juice. Because a significant amount of
-light in scattered duirng to low-oreder scattering events and high absorbtion.
+able to capture materials with relatively large suspended particles (such as
+orange juice or milk). Because of the significant amount of light in scattered
+duirng to low-oreder scattering events and high absorbtion.
 These materials exhibit significant absorption of the light as it propagates
 through the material, so much of the energy is scattered back into
 the environment near the point of incidence. This light exits in areas and
@@ -71,7 +84,43 @@ contributions:
 \end{itemize}
 
 \section{Cristensebn-Burley method}
-(implemented in newest Cycles) \cite{Christensen:2015:ARP:2775280.2792555}\\
-Diffusion models above require separate handling of single scattering, either by explicit ray tracing or separate integration.
-Both methods are slow. Cristensebn-Burley model includes single scattering, so no
-expensive separate calculation is needed.
+
+First appear in \cite{Burley:disney_siggraph15}. Proposed fitting of the
+diffusion profile on the basis of MC integration (multi+single):
+\[
+R_d(r) = \dfrac{e^{-r/d}+e^{-r/3d}}{8\pi dr}
+\]
+which is normalized over area and hemisphere:
+\[
+\int\limits_0^{2\pi}\int\limits_0^\infty R_d(r)rdrd\phi = 1
+\]
+The claimis Normalization -$>$ avoiding the need for albedo inversion. Why?
+
+In the following paper \cite{Christensen:2015:ARP:2775280.2792555} shows simple
+equations to relate parameter $d$ to the physical mean free path from radiative
+transport. This model includes single scattering, so no expensive separate
+calculation is needed.
+
+CDF and inverted CDF are trivially derived, do importance sampling is not a
+problem for this model. This requires sampling of each exponental separatly. RGB
+also separated. Six Multiple Importance Samples in total.
+
+Cons of the model:
+\begin{itemize}
+  \item {Still follows the infinite plane geometry assumption. So fails on
+  large distance parameters. As all Diffusion approximation models}
+  \item {Surface normals are not considered. Thay is why cavities are probles
+  (without special treatment) and bump details are blurried}
+  \item{Quote: \textit{Sampling can be difficult and expensive. Diffusion
+  integration requires distributing samples over the entire surface with known
+  density, preferably proportional to the diffusion profile. We can generate
+  such samples within a plane, but projecting this density through a solid can
+  oversample some parts of the surface and undersample others. Using MIS between
+  multiple planes [KKCF13] helps prevent undersampling but oversampling is still
+  a problem. Each plane sample also requires ray probing to find surface hits,
+  and if there are multiple intersections we build a conditional CDF based on
+  the distance to each point, then stochastically choose a point to sample. The
+  per-sample cost is substantial}}
+\end{itemize}
+
+Chistensen-Burley model is implemented in the newest Cycles.

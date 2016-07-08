@@ -60,3 +60,20 @@ and high scattering coefficient? Do they exist? How they look like?
     \item{While knowing the correct diffusion profiles one can use fitting tool
     to approximate them \cite{Nguyen:2007:GG:1407436}}
 \end{itemize}
+
+\section{Sampling}
+Why not to use point cloud based approach:
+\begin{itemize}
+  \item Ease of use for the user. Don't want to introduce more parameters to
+  control and require the end use to know the underlying algorithms
+  \item{Density of the generated PC limits the scope of the available
+  parameters: restrics the `width` of the SSS by minimal distanse between
+  points}
+  \item{Workflow complications for storing PC and additional memory
+  requirements}
+\end{itemize}
+
+For brute force Mont Carlo case in medium with samll $\sigma_s$ there is strong
+dependency of the multiple importance scattering on the max depth of
+pathtracing. We may end up with completely different pictures with 10 or 100
+samples.

@@ -9,6 +9,14 @@ Cristensebn-Burley falloffs
 
 \cite{EGWR:EGSR06:409-417} has formulas for the absorption and reduced scattering of the human skin. Also a lot of skin rendering results.
 
+\section{Light transport theory}
+\cite{Lafortune:1996:RPM:275458.275468} has short but decent description of the
+integrals in the surface and media to render with Monte Carlo integration.
+
+A nice picture explaining BDPT is also there.
+
+\cite{Veach:94:BDPT} has a (n,m) formulation of general BDPT algorithms
+
 \section{The Diffusion Approximation}
 Applies in highly scattering media: relation to the Central Limit Theorem
 The approach underlying the application of diffusion approximations is comparable to that underlying normal approximation for
@@ -16,6 +24,7 @@ sums of random variables. In the latter setting, the central limit theorem
 permits one to replace the analytically intractable sum of random variables by
 an appropriately chosen normal random variable.
 
+Probably first description is \cite{Stam1995}
 Main paper: A Practical Model for Subsurface Light Transport \cite{Jensen:2001:PMS:383259.383319}
 
 Geometric assumption on the surface as a flat, semi-infinite slab at (any
@@ -35,6 +44,7 @@ Improved diffusion \cite{Habel:2013:PBD:2600890.2600896} keeps the flat slab
 assumption, but imploves multiple scattering approximation. The computation cost
 is increased significantly.
 
+\section{Donner's Empirical BSSRDF}
 \comment{I like the reasoning here}
 Donner et al. in \cite{Donner:2009:EBM} claim that the sum of single scattering
 simulation and diffusion approximation (isotropic multiple scattering) does not
@@ -47,13 +57,28 @@ the environment near the point of incidence. This light exits in areas and
 directions outside of the single scattering regime, but not in the high-order
 multiple scattering regime.
 
+In the same paper !(probably) there is a statement:
+mean-free path gives the scale of the response for a given material. For two
+materials that differ only by $l$, we can predict the response of the second
+material by scaling the response of the first material by the ratio of their
+mean-free-paths.
+
 In this work they use Monte Carlo particle tracing to tabulate an empirical
 BSSRDF model for a flat surface on a homogeneous semi-infinite volume.
 They represented the hemispherical distribution of light leaving the surface,
 depending on the angle of the incident light, the relative position of the
 exitant light, and the physical parameters (volume albedo, mean free path
 length, phase function, and index of refraction). Their tables took months to
-compute and contain around 250MB of data. (Still can't find thee data)
+compute and contain around 250MB of data.
+\comment{Still can't find the data. But could be very helpful}
+
+\section{About single scattering}
+The iterative approach of finding refractive paths from inside the triangle
+meshes is described here \cite{walter:inria-00388481}. Requires building a tree
+and solving 2d Newton iteration for triangle meshes with shading normals.
+
+The follow up on single scattering in participating media with refractive
+bundries is \cite{holzschuch:hal-01083246} It is implemented in Mitsuba.
 
 \section{Summary of \textbf{Classical and Improved Diffusion Theory for
 Subsurface Scattering}}
@@ -63,6 +88,21 @@ From Radiance Transport Equation {insert it here} to the integral equation which
 computes the outgoing radiance, Lo, at position, direction (~ xo,~ wo) and
 BSSRDF \textit{insest one here}
 
+\section{King at. al.}
+Simple Gausseian profile is:
+\[
+R_d(r) = \dfrac{1}{2\pi \nu}e^{-r^2/2\nu}
+\]
+then radial distribution over disc is:
+\[
+pdf_{disc}(r) = \dfrac{R_d(r)}{1-e^{-{R_m}^2/2 \nu}}
+\]
+\[
+r(\xi) = \sqrt{-2\nu \log(1-\xi(1-e^{-{R_m}^2/2 \nu))}}
+\]
+\[
+R_m = \sqrt{12.46\nu}
+\]
 
 \section{Quantized-diffusion model}
 \cite{D'Eon:2011:QMR:1964921.1964951}\\
@@ -72,7 +112,20 @@ BSSRDF \textit{insest one here}
     \item More realistic look with sharper features
     \item Much more complicated and time-consuming to calculate (DO I WANT TO COMPARE PERFORMANCE?)
 \end{itemize}
+D’Eon and Irving  greatly increased the accuracy of the dipole model, using a
+better approximation for the diffusion inside the material. Their approach still
+loses directional information, while \cite{holzschuch:hal-00760054} keep it. The
+difference could be important for anisotropic materials.
 The resulting diffuse reflectance profile was approximated as a sum of Gaussians.
+
+\section{Double scattering paper}
+\cite{Donner:2009:EBM} model is the most accurate to date (2013), but it has a
+high memory cost (up to 250 MB for each material). It is also limited to a
+single lobe. \cite{holzschuch:hal-00760054} extends and completes Donner's
+study. They also provide a model that is less accurate, but much more compact
+and can represent multiple lobes.
+
+Still use that assumption of boundary as an infinite plane.
 
 \section{Photon Beam diffusion}
 The photon beam diffusion \cite{Habel:2013:PBD:2600890.2600896} had three main

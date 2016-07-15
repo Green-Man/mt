@@ -104,6 +104,7 @@ r(\xi) = \sqrt{-2\nu \log(1-\xi(1-e^{-{R_m}^2/2 \nu))}}
 R_m = \sqrt{12.46\nu}
 \]
 
+
 \section{Quantized-diffusion model}
 \cite{D'Eon:2011:QMR:1964921.1964951}\\
 \begin{itemize}
@@ -147,7 +148,23 @@ which is normalized over area and hemisphere:
 \[
 \int\limits_0^{2\pi}\int\limits_0^\infty R_d(r)rdrd\phi = 1
 \]
-The claimis Normalization -$>$ avoiding the need for albedo inversion. Why?
+The claim is Normalization -$>$ avoiding the need for albedo inversion. Why?
+
+\[
+R_{l=1}(r) = As\dfrac{e^{-sr}+e^{-sr/3}}{8\pi r}
+\]
+
+\[
+R_{l=1}(r) = A\dfrac{se^{-sr}+te^{-tr/3}}{8\pi r}
+\]
+where $A=\int_0^{\infty} R(r)2\pi rdr$
+
+\[
+A(\alpha) = a + b(1- e^{-c\alpha})
+\]
+
+with parameters $a = 0.0699, b = -3.97\cdot 10^{-05}, c =
+-10.0$
 
 In the following paper \cite{Christensen:2015:ARP:2775280.2792555} shows simple
 equations to relate parameter $d$ to the physical mean free path from radiative
@@ -175,5 +192,3 @@ Cons of the model:
   the distance to each point, then stochastically choose a point to sample. The
   per-sample cost is substantial}}
 \end{itemize}
-
-Chistensen-Burley model is implemented in the newest Cycles.

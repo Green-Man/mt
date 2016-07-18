@@ -1,30 +1,4 @@
- % The main file for CAMP reports
- % Don't put any content in here. 
- % Don't even include content files by using \input or \inlcude. 
- % Put your content to TEXT.TEX or include it there using \input.
- % Uses:
- %      SETTINGS.TEX   contains the settings for this document
- %      COMMANDS.TEX   contains commands which can be used while writing
- %      INFO.TEX         contains the author, title and so on for the cover
- %      COVER.TEX         formats the front cover of the document
- %      ABSTRACT.TEX   contains the abstract to be included (if needed)
- %      TEXT.TEX         contains the actual content of the document
- %      BIB.BIB            containt the BibTeX entries for the document
- 
- 
-%% Draft document mode
-%% Final document
 \documentclass[11pt,a4paper,headsepline,footsepline,footexclude,BCOR12mm,DIV13]{scrbook}
-
-%\documentclass[11pt,a4paper,bibtotoc,idxtotoc,headsepline,footsepline,footexclude,BCOR20mm,DIV10]{scrbook}
-
-% KOMA-Optionen:
-%  bibtotoc: include bibliography in table of contents
-%  idxtotoc: include index in table of contents
-%  headsepline: use horizontalline under heading
-%  BCOR: binding correcion (Bindungskorrektur) (e.g.: BCOR5mm)
-%  DIV: Number of sheet sections (used for layout) (e.g.: DIV12) 
-
 
 % include title and author information for the cover
 \input{components/info}
@@ -36,10 +10,10 @@
 \input{components/commands}
 
 \input{glossary/terms}
-\input{glossary/acronyms}
-\makeindex
-\makeglossary
+
+%\makeindex
 \makeglossaries
+
 
 \begin{document}
 
@@ -85,12 +59,10 @@
     \label{part:secondP}
     \input{chapters/Setup}
     
-    % ---------------------------------------------------------------------------
     %
     % Appendix
     %
     % ---------------------------------------------------------------------------
-    
     %\part*{Appendix}
     %\addcontentsline{toc}{part}{Appendix}
     
@@ -98,17 +70,13 @@
     
     %\input{chapters/oneAppendix}
 
-\printindex
-\glsaddall{}
+%\printindex
+%\glsaddall{}
 \printglossaries
 
 
 %\clearemptydoublepage
-% Bibliography handling
-%\bibliographystyle{styles/bauermaNum}
-%\bibliographystyle{alpha}
 \bibliographystyle{apalike}
-%\bibliographystyle{plain}
 \bibliography{bibliography/literature}
 
 

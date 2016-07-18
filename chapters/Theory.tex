@@ -12,10 +12,21 @@ Cristensebn-Burley falloffs
 \section{Light transport theory}
 \cite{Lafortune:1996:RPM:275458.275468} has short but decent description of the
 integrals in the surface and media to render with Monte Carlo integration.
-
 A nice picture explaining BDPT is also there.
 
 \cite{Veach:94:BDPT} has a (n,m) formulation of general BDPT algorithms
+
+\subsection{Henyey-Greenstein}
+\cite{Gkioulekas:2013:IVR:2508363.2508377} made a great user study.
+Take home notes from it: \gls{hg} is not general enough (can't represent some
+materials). Uniform parametrization needs requires to expose $g^2$ to the user.
+
+TODO: while inroducing phase function, try to render single photon inside the
+media and visualize it with plotly as Andreas did in pseudo 3d. TO illustrate
+random walk directions with different Henyey-Greenstein \textbf{g}.
+
+Question: What are materials with high albedo and strong backward scattering
+and high scattering coefficient? Do they exist? How they look like?
 
 \section{The Diffusion Approximation}
 Applies in highly scattering media: relation to the Central Limit Theorem

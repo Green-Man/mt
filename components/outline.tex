@@ -8,36 +8,37 @@
 	\huge{Outline of the Thesis}
 \end{center}
 
-\comment{Outline is a mess now}
-
-
 %--------------------------------------------------------------------
 \section*{Part I: Introduction and Theory}
 
-\noindent {\scshape Chapter 1: Introduction}
+ {\scshape Chapter 1: Introduction}\\
+The description of the light simulation in the participting media
+takes place here from the most general point of view. What problem we are trying
+to solve, and why it is important.
 
-\noindent  This chapter presents an overview of the thesis and it purpose. Furthermore, it will discuss the sense of life in a very general approach.
-
-\noindent {\scshape Chapter 2: Theory}
-
-\noindent  No thesis without theory.
+{\scshape Chapter 2: Theory}\\
+Theory of the light transport with emission, attenuation and
+scattering laws. Parametrization. Pathtracing theory. Next Event estimation.
+Importance sampling.
+MIS. Diffusion theory, maybe an overview for the Diffusion Approximation.
 
 %--------------------------------------------------------------------
-\section*{Part II: The Real Work}
+\section*{Part II: Implementation and measurements}
 
-\begin{itemize}
-    \item{\textbf{April:} Diffusion approximation implementation}
-    \item{\textbf{May:} Non-diffusion methods: Monte-Carlo implementation for
-    comparisons}
-    \item{\textbf{June:} Different falloff functions; Importance sampling of
-    profiles}
-    \item{\textbf{July:} Measurements data and comparisons between different
-    implementations}
-    \item{\textbf{August:} Need to start writing actual chapters}
-    \item{\textbf{September:} Pre-final submission around 10.Sep}
+{\scshape Chapter 3: Pathtracing}\\
+Pathtracing implementation details. Correctness of the method and
+problems in practical usage
 
-\end{itemize}
+{\scshape Chapter 3: Pathtracing with Next Even Estimation}\\
+PTDL integrator. It's advantages and failure cases.
 
-\noindent {\scshape Chapter 3: Overview}
+{\scshape Chapter 3: Diffusion Approximation}\\
+Diffusion Approximation as an approach to render in certain
+scenarious. DA integrator, disk sampling and other approaches. Precomputed
+BSSRDFs, Christenen Burley profile, fitting to Monte-Carlo references and
+it's importance sampling. Parametrization issue.
 
-\noindent  This chapter presents the requirements for the process.
+\comment{Currently in TODO status}
+{\scshape Chapter 3: Comparisons and measurements}\\
+Measurements, data and comparisons between different
+implementations. Convergence graphs.

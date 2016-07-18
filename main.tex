@@ -36,12 +36,10 @@
 \input{components/commands}
 
 \input{glossary/terms}
-
+\input{glossary/acronyms}
 \makeindex
-   %% inter line spacing
-%\linespread{1.0}
-
 \makeglossary
+\makeglossaries
 
 \begin{document}
 
@@ -60,7 +58,9 @@
     \input{components/abstract}
     
     \tableofcontents
-    
+    \listoffigures %\ float package, with the \newfloat and \listof commands,
+    % can be used to create lists of custom floating objects (e.g. programs,
+    % algorithms, etc.). The tocloft package can be used to modify their layout
     \input{components/outline}
 
 \mainmatter

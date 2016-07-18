@@ -1,7 +1,6 @@
 % Included by MAIN.TEX
-% Defines the settings for the CAMP report document
 
-\renewcommand{\sectfont}{\normalfont \bfseries}        % Schriftart der Kopfzeile
+\renewcommand{\sectfont}{\normalfont \bfseries}
 
 % manipulate footer
 \usepackage{scrpage2}
@@ -27,7 +26,6 @@
 
 
 \usepackage{colortbl}
-
 
 %% show program code\ldots
 %\usepackage{verbatim}
@@ -55,75 +53,37 @@
 \usepackage{makeidx}
 
 % Improves the interface for defining floating objects such as figures and tables
-%\usepackage{float}
+\usepackage{float}
 
-%% load german babel package for german abstract
-%\usepackage[german,american]{babel}
-%\usepackage[english]{babel}
-%\selectlanguage{english}
+%% TODO:
+%%\WarningsOff* and \WarningFilter commands of the silence
 
-% use german characters as well
-%\usepackage[latin1]{inputenc}       % allow Latin1 characters
-
-% use initals dropped caps - doesn't work with PDF
-%\usepackage{dropping}
- %\usepackage[dvips]{dropping}
 
 %\usepackage{styles/shortoverview}
 %----------------------------------------------------
 %      Graphics and Hyperlinks
 %----------------------------------------------------
 
-%% check for pdfTeX
-\ifx\pdftexversion\undefined
- %% use PostScript graphics
- \usepackage[dvips]{graphicx}
 
- \DeclareGraphicsExtensions{.eps,.epsi}
- \graphicspath{{figures/}{figures/review}} 
- %% allow rotations
- \usepackage{rotating}
- %% mark pages as draft copies
- %\usepackage[english,all,light]{draftcopy}
- %% use hypertex version of hyperref
- \usepackage[hypertex,hyperindex=false,colorlinks=false]{hyperref}
-\else %% reduce output size \pdfcompresslevel=9
- %% declare pdfinfo
- %\pdfinfo { 
- %  /Title (my title) 
- %  /Creator (pdfLaTeX) 
- %  /Author (my name) 
- %  /Subject (my subject	) 
- %  /Keywords (my keywords)
- %}
- %% use pdf or jpg graphics
- \usepackage[pdftex]{graphicx}
- \DeclareGraphicsExtensions{.jpg,.JPG,.png,.pdf,.eps}
- \graphicspath{{figures/}} 
+\usepackage{graphicx}
+\DeclareGraphicsExtensions{.jpg,.JPG,.png,.pdf,.eps}
+\graphicspath{{imgs/}} 
  
- %% Load float package, for enabling floating extensions
- \usepackage{float}
- 
- %% allow rotations
- \usepackage{rotating}
- %% use pdftex version of hyperref
- \usepackage[pdftex,colorlinks=true,linkcolor=red,citecolor=red,%
- anchorcolor=red,urlcolor=red,bookmarks=true,%
- bookmarksopen=true,bookmarksopenlevel=0,plainpages=false%
- bookmarksnumbered=true,hyperindex=false,pdfstartview=%
- ]{hyperref}
-%
-%\usepackage[pdftex,colorlinks=false,linkcolor=red,citecolor=red,%
-% anchorcolor=red,urlcolor=red,bookmarks=true,%
-% bookmarksopen=true,bookmarksopenlevel=0,plainpages=false%
-% bookmarksnumbered=true,hyperindex=false,pdfstartview=%
-% ]{hyperref}
-\fi
+
+\usepackage{float}
+\usepackage{rotating}
+
+
+\usepackage[pdftex,colorlinks=true,linkcolor=red,citecolor=blue,%
+anchorcolor=red,urlcolor=red,bookmarks=true,%
+bookmarksopen=true,bookmarksopenlevel=0,plainpages=false%
+bookmarksnumbered=true,hyperindex=true,pdfstartview=%
+]{hyperref}
+
 
 
 \usepackage[xindy]{glossaries}
-%\usepackage{glossaries}
-%\usepackage[toc,nonumberlist,acronym]{glossaries}
+
 
 %% Fancy chapters
 %\usepackage[Lenny]{fncychap}

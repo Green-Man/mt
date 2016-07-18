@@ -4,12 +4,20 @@
 \section{Searchlight configuration}
 Perpendicular light beam to infinite surface \cite{Jacques1995}
 
-The term is: \gls{infiniteslab},
+The term is: \gls{infiniteslab}
+
+\begin{figure}%[H]
+    \centering
+    \includegraphics[width=0.5\textwidth]{"imgs/renders/dragon_ptdl"}
+    \caption{Drogan rendered with PTDL and MIS attempt}
+    \label{fig:dragon_ptdl}
+\end{figure}
 
 \section{Parametrization}
 Artists prefer to define surface albedo and mean multiple scattering distance
 (characteristic or visible depth of the SSS). The radiative transport scattering
 coefficients must therefore be inferred by inverting the diffusion equation.
+Test: as seen at the figure \ref{fig:dragon_ptdl} at page \pageref{fig:dragon_ptdl}
 
 The scattering was parameterized by the volume scattering and absorption
 coefficients $\sigma_s$ and $\sigma_a$ (or, equivalently, the volume
@@ -25,6 +33,7 @@ both of which can have trouble with high albedos. Another challenge is that
 diffusion profiles are often too blurry given that they typically only model
 multiple scattering, leading to the use of two or more profiles combined in an
 ad hoc manner.
+
 
 \subsection{Measuring sigmas}
 Big measurements work was done here \cite{Gkioulekas:2013:IVR:2508363.2508377}

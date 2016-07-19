@@ -11,34 +11,39 @@
 %--------------------------------------------------------------------
 \section*{Part I: Introduction and Theory}
 
- {\scshape Chapter 1: Introduction}\\
-The description of the light simulation in the participting media
-takes place here from the most general point of view. What problem we are trying
-to solve, and why it is important.
+\textbf{ Chapter 1: Introduction}\\
+This chapter defines the the scope of the work and high level
+overview of the Monte Carlo methods discussed and implemented. The description
+of the light simulation in the participting media and possible variance reduction techniques
+takes place from the general point of view. An overview
+of the limitations of the each of the method in also given in this chapter.
 
-{\scshape Chapter 2: Theory}\\
-Theory of the light transport with emission, attenuation and
-scattering laws. Parametrization. Pathtracing theory. Next Event estimation.
-Importance sampling.
-MIS. Diffusion theory, maybe an overview for the Diffusion Approximation.
+\textbf{Chapter 2: Theory}\\
+Chapter 2 contains theorical summary of the Monte Carlo methods with attention
+on such concepts, which are important in the context of this work, such
+as light integration, importance sampling and multiple importance sampling.
+Theory of the in ligth transport in participating media with emission,
+attenuation and scattering laws.
+The parametrization of the optical properties of the media for physically based
+simulations and approximations. The intoduction into the diffusion theory.
 
 %--------------------------------------------------------------------
 \section*{Part II: Implementation and measurements}
 
-{\scshape Chapter 3: Pathtracing}\\
-Pathtracing implementation details. Correctness of the method and
-problems in practical usage
+\textbf{ Chapter 3: Pathtracing integrator and Next Event Estimation}\\
+Here the pathtracing implementation details are discussed with additional Direct
+Light Sampling technique. Correctness of the method and problems in practical
+usage. Comparison of the performance between two methods and the combination od
+them using MIS.
 
-{\scshape Chapter 3: Pathtracing with Next Even Estimation}\\
-PTDL integrator. It's advantages and failure cases.
-
-{\scshape Chapter 3: Diffusion Approximation}\\
-Diffusion Approximation as an approach to render in certain
-scenarious. DA integrator, disk sampling and other approaches. Precomputed
-BSSRDFs, Christenen Burley profile, fitting to Monte-Carlo references and
-it's importance sampling. Parametrization issue.
-
+\textbf{ Chapter 4: Diffusion Approximation}\\
+The practical details of the implementation of the Diffusion Approximation
+light integrator. Sampling starategies and precomputed BSSRDFs. Special case of
+the Christenen Burley BSSRDF profile and fitting to Monte-Carlo references.
+Importance sampling of the precomputed profiles and and parametrization issue.
+\newline
+\newline
 \comment{Currently in TODO status}
-{\scshape Chapter 3: Comparisons and measurements}\\
+\textbf{ Chapter 5: Comparisons and measurements}\\
 Measurements, data and comparisons between different
 implementations. Convergence graphs.

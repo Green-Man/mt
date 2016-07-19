@@ -16,14 +16,10 @@
 \usepackage{palatino}
 
 % enable special PostScript fonts
-\usepackage{pifont}
+%\usepackage{pifont}
 
 % make thumbnails
 %\usepackage{thumbpdf}
-
-%to use the subfigures
-%\usepackage{subfigure}
-
 
 \usepackage{colortbl}
 
@@ -64,6 +60,10 @@
 %      Graphics and Hyperlinks
 %----------------------------------------------------
 
+%to use the subfigures
+%\usepackage{subfig}
+\usepackage{caption}
+\usepackage{subcaption}
 
 \usepackage{graphicx}
 \DeclareGraphicsExtensions{.jpg,.JPG,.png,.pdf,.eps}
@@ -76,7 +76,7 @@
 
 \usepackage[pdftex,colorlinks=true,linkcolor=red,citecolor=blue,%
 anchorcolor=red,urlcolor=red,bookmarks=true,%
-bookmarksopen=true,bookmarksopenlevel=0,plainpages=false%
+bookmarksopen=true,bookmarksopenlevel=0,plainpages=false,%
 bookmarksnumbered=true,hyperindex=true,pdfstartview=%
 ]{hyperref}
 

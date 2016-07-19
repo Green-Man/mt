@@ -1,0 +1,21 @@
+\chapter{Pathtracing integrator and Next Event Estimation}
+\label{chapter:ptdl}
+
+
+\section{Searchlight configuration}
+Perpendicular light beam to infinite surface \cite{Jacques1995}
+
+The term is: \gls{infiniteslab}
+
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=0.5\textwidth]{"imgs/renders/dragon_ptdl"}
+    \caption{Dragon rendered with PTDL and MIS attempt}
+    \label{fig:dragon_ptdl}
+\end{figure}
+
+
+For brute force Mont Carlo case in medium with samll $\sigma_s$ there is strong
+dependency of the multiple importance scattering on the max depth of
+pathtracing. We may end up with completely different pictures with 10 or 100
+samples.

@@ -1,17 +1,5 @@
-\chapter{Setup}
-\label{chapter:Setup}
-
-\section{Searchlight configuration}
-Perpendicular light beam to infinite surface \cite{Jacques1995}
-
-The term is: \gls{infiniteslab}
-
-\begin{figure}%[H]
-    \centering
-    \includegraphics[width=0.5\textwidth]{"imgs/renders/dragon_ptdl"}
-    \caption{Drogan rendered with PTDL and MIS attempt}
-    \label{fig:dragon_ptdl}
-\end{figure}
+\chapter{Diffusion Approximation}
+\label{chapter:da}
 
 \section{Parametrization}
 Artists prefer to define surface albedo and mean multiple scattering distance
@@ -33,13 +21,6 @@ both of which can have trouble with high albedos. Another challenge is that
 diffusion profiles are often too blurry given that they typically only model
 multiple scattering, leading to the use of two or more profiles combined in an
 ad hoc manner.
-
-
-\subsection{Measuring sigmas}
-Big measurements work was done here \cite{Gkioulekas:2013:IVR:2508363.2508377}
-TODO: Check how their results differ from little table of Jensen
-\cite{Jensen:2001:PMS:383259.383319}
-
 
 \section{Diffusion profiles}
 \comment{Think about how to organize this section}
@@ -75,7 +56,3 @@ Why not to use point cloud based approach:
   requirements}
 \end{itemize}
 
-For brute force Mont Carlo case in medium with samll $\sigma_s$ there is strong
-dependency of the multiple importance scattering on the max depth of
-pathtracing. We may end up with completely different pictures with 10 or 100
-samples.

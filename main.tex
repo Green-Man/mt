@@ -1,83 +1,50 @@
-\documentclass[11pt,a4paper,headsepline,footsepline,footexclude,BCOR12mm,DIV13]{scrbook}
+\documentclass[11pt,a4paper,headsepline,footsepline,BCOR12mm,DIV13,oneside]{scrbook}
+%oneside to remove empty pages and make numbering symmetrical. Is it TUM
+% compatible?
 
-% include title and author information for the cover
+%non-printable inputs
 \input{components/info}
-
-% include settings
 \input{components/settings}
-
-% include commands
 \input{components/commands}
+\input{components/terms}
 
-\input{glossary/terms}
-
-%\makeindex
 \makeglossaries
 
-
 \begin{document}
-
-\frontmatter
-
-    %\input{components/cover}
-
-    %\clearemptydoublepage
+    \frontmatter
+        \input{components/titlepage}
+        \input{components/disclaimer}
+        \input{components/abstract}
+        
+        \tableofcontents
+        %\listoffigures
+        \input{components/outline}
     
-    \input{components/titlepage}
+    \mainmatter
+        \part[Introduction and Theory]{Introduction and Theory}
+        \label{part:partOne}
+        \input{chapters/introduction}
+        \input{chapters/theory}
+        \part[Implementation and measurements]{Implementation and measurements}
+        \label{partTwo}
+        \input{chapters/ptdl}
+        \input{chapters/diffusion}
+        \input{chapters/measurements}
     
-    \input{components/disclaimer}
+    %\printindex
+    %\glsaddall{}
+    \printglossaries
     
-    %\input{components/acknowledgements}
-    
-    \input{components/abstract}
-    
-    \tableofcontents
-    \listoffigures %\ float package, with the \newfloat and \listof commands,
-    % can be used to create lists of custom floating objects (e.g. programs,
-    % algorithms, etc.). The tocloft package can be used to modify their layout
-    \input{components/outline}
-
-\mainmatter
-
-    % ---------------------------------------------------------------------------
-    %
-    %Introduction and Background Theory
-    %
-    % ---------------------------------------------------------------------------
-    \part[Introduction and Theory]{Introduction and Theory}
-    \label{part:introAndBackgroundTheory}
-    \input{chapters/Introduction}
-    \input{chapters/Theory}
-    
-    %
-    %% ---------------------------------------------------------------------------
-    %%
-    %% Fully Automated Calibration for Ultrasound
-    %%
-    %%% ---------------------------------------------------------------------------
-    \part[What was done]{What was done}
-    \label{part:secondP}
-    \input{chapters/Setup}
-    
-    %
-    % Appendix
-    %
-    % ---------------------------------------------------------------------------
-    %\part*{Appendix}
-    %\addcontentsline{toc}{part}{Appendix}
-    
-    %\appendix %---------------------------------------
-    
-    %\input{chapters/oneAppendix}
-
-%\printindex
-%\glsaddall{}
-\printglossaries
-
-
-%\clearemptydoublepage
-\bibliographystyle{apalike}
-\bibliography{bibliography/literature}
-
-
+    \bibliographystyle{apalike}
+    \bibliography{components/literature}
 \end{document}
+
+\begin{itemize}
+    \item {Don't wait. Write!}
+    \item {Identify your key idea}
+    \item {Tell a story: Problem - Solution. As on whe whiteboard}
+    \item {Nail your contributions}
+    \item {Rlated work: Later (questionable)}
+    \item {Use examples to explain difficult matters}
+    \item {Listen to feedback}
+\end{itemize}

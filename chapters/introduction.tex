@@ -1,61 +1,89 @@
 \chapter{Introduction}
 \label{chapter:introduction}
 
-\section{Overview of the work}
+\section{Overview}
 
-\subsection{Real world meterial approach}
+The context of the rendering application always dictate the constraints
+applied to the methods and algorithms used by the software for the image generation.
+Modern approaches to realictic rendering could be roughly divided into distinct
+groups:
+physically based rendering (light simulation approach) and plausible rendering
+(phenomenological approach).
+
+Physically based rendering tries to simulate interaction of the light and matter
+taking into account the laws of physics and our theoretical knowlage about the
+natue.
+
+Plausible rendering, on the other hand, is intended to mimic optical effects
+observed by the human eye or captured by camera accounting the audience
+preception.
+
+While Monte Carlo methods of the light simulation are usually perceived as
+physically based methods. Sometimes they are also used for relatively fast way
+to achive desired plausible optical effects.
+
+\section{Scope}
+In this paper I study Monte Carlo rendering of the subsurface scattering
+materials, both in the context of light simulation and plausible rendering.
+The main interest is in the correctness of the methods and the
+consistency of the results between them. With the discussion of the optimisation
+techniques applicable in certain scenarios.
+
+I focus on the methods of the rendering of highly scattering isotropic materials
+which usually appear as optically thick objects.
+
+These are examples of the materials which, in most cases, meet that condition.
 \begin{itemize}
-    \item Organics
-    \begin{itemize}
-      \item Skin (sweaty, dry, makeup)
-      \item Fruits (layered, uniform, non-uniform)
-      \item Food (Cheese, meat, bread)
-    \end{itemize}
     \item Non-organic
     \begin{itemize}
-      \item Marble (polished, rough, dusty)
-      \item Plastics (wax, etc othe non-organic uniform solid bodies)
+        \item Marble (polished, rough, dusty)
+        \item Plastics or waxes
+        \item Snow
+        \item Thin sheets (paper, foilage, cloth)
+        \item Non photoreal (Cartoon style and stylisation)
     \end{itemize}
-    \item Liquids (milk, wine, juice, dirty/dusty water, ocean water)
-    \item Fluids (air, fog, dust)
-    \item Snow
-    \item Thin sheets (paper, foilage, cloth)
-    \item Non photoreal (Cartoon style and stylisation)
+    \item Organics
+    \begin{itemize}
+    \item Optically thick liquids (milk, some kinds of juice)
+        \item Skin (sweaty, dry, makeup)
+        \item Food (cheese, meat, bread, some kinds of fruits)
+    \end{itemize}
 \end{itemize}
+These are examples of materials out of scope:
+\begin{itemize}
+    \item Highly transparent liquids (dirty/dusty water, ocean water, wine)
+    \item Fluids (air, fog, dust)
+\end{itemize}
+I consider only isotropic media which are modeled by means of geometric
+polygonal meshes. The constraint of the closed shape in not applicable to all
+the methods discussed and will be discussed later.
 
-\subsection{Things to consiger while choosing method}
-\begin{description}
-  \item [Lighting restrictions] \emph{Analytic light} sources and \emph{area lights and IBL} friendly
-  \item [Multiple object friendly]
-  \item [Preprocess] Is additional preprocess step needed (point cloud generation)
-  \item [Parametrization] Artist friendly or physically correct
-  \item [Performance] Is it a real time approximation for OpenGL
-  \item [Flickering] How suitable for animation (does it introduce additional flickering)
-  \item [Motion blur] How well it works with motion blur (SSS and volumetrics)
-  \item [Closed objecs only] Does it supports single sided geometry
-  \item Homogeneous or inhomogeneous
-  \item Istropic or anisoisotropic media
-\end{description}
-
-Focus on the rendering highly scattering materials with relatively small mean
-free path length between scattering events.
-
-Do not consider spectral scattering. Only monochromatic light is simulated.
+I do not consider spectral scattering. Only monochromatic light is simulated.
 There are papers describing the process of combined rendering of RGB with
-corresponding importance sampling.
+corresponding importance sampling. To add.
 
 Why not to use point cloud based approach:
 \begin{itemize}
-    \item{Ease of use for the user. Don't want to introduce more parameters to
-    control and require the end use to know the underlying algorithms}
+    \item{Ease of use for the user. Don't want to introduce a lot of control
+    parameters which often require the end user to learn the details of the
+    underlying algorithms}
     \item{Undesired preprocessing step. Unfriendly to progressive rendering}
-    \item{Density of the generated PC limits the scope of the available
-    parameters. It restrics the effective width of the SSS by minimal distanse
-    between points. Point density $\approx$ mean free path}
-    \item{Workflow complications for storing PC and additional memory
-    requirements}
+    \item{Density of the generated point cloud (or other stucture) limits the
+    scope of the available parameters. It restrics the effective width of the
+    SSS by minimal distanse between points, for example. Point density $\approx$
+    mean free path}
     \item{Possible flickering artifacts during animation}
-    \item{Additional memory required}
+    \item{Additional memory requirements}
+    \item{Workflow complications for storing data additional data}
+\end{itemize}
+
+Other things to consiger while choosing method:
+\begin{itemize}
+  \item Lighting restrictions \emph{Analytic light} sources and \emph{area lights and IBL} friendly
+  \item Multiple object friendly
+  \item Parametrization Artist friendly or physically correct
+  \item Homogeneous or inhomogeneous
+  \item Performance. Is it suitable for real time application?
 \end{itemize}
 
 \section{Unidirectional path tracing}
@@ -153,6 +181,13 @@ Formulate scattering in media in analogy to local surface reflectance (BRDF)
 \subsection{Single scattering and Multiple scattering}
 Decompose into single- and multiscattering terms
 
+\subsection{Double scattering paper}
+\cite{Donner:2009:EBM} model is the most accurate to date (2013), but it has a
+high memory cost (up to 250 MB for each material). It is also limited to a
+single lobe. \cite{holzschuch:hal-00760054} extends and completes Donner's
+study. They also provide a model that is less accurate, but much more compact
+and can represent multiple lobes.
+
 \subsection{Searchlight problem formulation}
 Simplify model to the 'Searchlight Problem' to allow analytic solutions
 Perpendicular light beam to infinite surface \cite{Jacques1995}
@@ -164,6 +199,34 @@ Perpendicular light beam to infinite surface \cite{Jacques1995}
 \end{figure}
 
 The term is: \gls{infiniteslab}
+
+\section{Donner's Empirical BSSRDF}
+This strange \gls{BSSRDF}
+\comment{I like the reasoning here}
+Donner et al. in \cite{Donner:2009:EBM} claim that the sum of single scattering
+simulation and diffusion approximation (isotropic multiple scattering) does not
+able to capture materials with relatively large suspended particles (such as
+orange juice or milk). Because of the significant amount of light in scattered
+duirng to low-oreder scattering events and high absorbtion.
+These materials exhibit significant absorption of the light as it propagates
+through the material, so much of the energy is scattered back into
+the environment near the point of incidence. This light exits in areas and
+directions outside of the single scattering regime, but not in the high-order
+multiple scattering regime.
+
+In the same paper !(probably) there is a statement:
+mean-free path gives the scale of the response for a given material. For two
+materials that differ only by $l$, we can predict the response of the second
+material by scaling the response of the first material by the ratio of their
+mean-free-paths.
+
+In this work they use Monte Carlo particle tracing to tabulate an empirical
+BSSRDF model for a flat surface on a homogeneous semi-infinite volume.
+They represented the hemispherical distribution of light leaving the surface,
+depending on the angle of the incident light, the relative position of the
+exitant light, and the physical parameters (volume albedo, mean free path
+length, phase function, and index of refraction). Their tables took months to
+compute and contain around 250MB of data.
 
 \section{Scattering in the thin objecs}
 Diffuse transmission BTDF as a fast approximation of subsurface scattering in

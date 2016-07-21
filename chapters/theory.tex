@@ -2,7 +2,7 @@
 \label{chapter:theory}
 
 
-\section{Monte Carlo light integration in participating media}
+\section{Monte Carlo methods}
 \cite{Lafortune:1996:RPM:275458.275468} has short but decent description of the
 integrals on the surface and in the media to integrate using with Monte Carlo
 approach.
@@ -16,6 +16,7 @@ average \cite{Veach:1998:RMC:927297}, \cite{Csi03variancereduction}
 
 \ldots
 
+\section{Light simulation in participating media}
 \subsection{Emission}
 \subsection{Absorption}
 \subsection{Scattering}
@@ -33,7 +34,7 @@ Question: What are materials with high albedo and strong backward scattering
 and high scattering coefficient? Do they exist? How they look like?
 
 \section{The Diffusion Approximation}
-Applies in highly scattering media: relation to the Central Limit Theorem
+Applies to the highly scattering media: relation to the Central Limit Theorem
 The approach underlying the application of diffusion approximations is comparable to that underlying normal approximation for
 sums of random variables. In the latter setting, the central limit theorem
 permits one to replace the analytically intractable sum of random variables by
@@ -47,113 +48,3 @@ point). This is reasonable only if scattering distance is small with respect to
 surface curvature and thickness. \textbf{Multiple scattering} diffusion
 component is approximately determined. The \textbf{single scattering} is
 separately integrated.
-
-Following: A Rapid Hierarchical Rendering Technique for Translucent Materials\\
-\cite{Jensen:2002:RHR:566570.566619} Introduces the idea of decoupling the calculations of surface
-illumination and the sub-surface scattering effect in a two-pass method;
-describes a fast hierarchical approach for evaluating subsurface scattering
-and proposes a reparametrization of the BSSRDF parameters for easier user adjustment.
-
-The techniques of Quantized diffusion \cite{D'Eon:2011:QMR:1964921.1964951} and
-Improved diffusion \cite{Habel:2013:PBD:2600890.2600896} keeps the flat slab
-assumption, but imploves multiple scattering approximation. The computation cost
-is increased significantly.
-
-\section{Donner's Empirical BSSRDF}
-This strange \gls{BSSRDF}
-\comment{I like the reasoning here}
-Donner et al. in \cite{Donner:2009:EBM} claim that the sum of single scattering
-simulation and diffusion approximation (isotropic multiple scattering) does not
-able to capture materials with relatively large suspended particles (such as
-orange juice or milk). Because of the significant amount of light in scattered
-duirng to low-oreder scattering events and high absorbtion.
-These materials exhibit significant absorption of the light as it propagates
-through the material, so much of the energy is scattered back into
-the environment near the point of incidence. This light exits in areas and
-directions outside of the single scattering regime, but not in the high-order
-multiple scattering regime.
-
-In the same paper !(probably) there is a statement:
-mean-free path gives the scale of the response for a given material. For two
-materials that differ only by $l$, we can predict the response of the second
-material by scaling the response of the first material by the ratio of their
-mean-free-paths.
-
-In this work they use Monte Carlo particle tracing to tabulate an empirical
-BSSRDF model for a flat surface on a homogeneous semi-infinite volume.
-They represented the hemispherical distribution of light leaving the surface,
-depending on the angle of the incident light, the relative position of the
-exitant light, and the physical parameters (volume albedo, mean free path
-length, phase function, and index of refraction). Their tables took months to
-compute and contain around 250MB of data.
-\comment{Still can't find the data. But could be very helpful}
-
-\section{About single scattering}
-The iterative approach of finding refractive paths from inside the triangle
-meshes is described here \cite{walter:inria-00388481}. Requires building a tree
-and solving 2d Newton iteration for triangle meshes with shading normals.
-
-The follow up on single scattering in participating media with refractive
-bundries is \cite{holzschuch:hal-01083246} It is implemented in Mitsuba.
-
-\section{Summary of the Improved Diffusion theory report}
-Tech report from Habel et al. \cite{habel13cid} is similar to
-it \cite{Habel:2013:PBD:2600890.2600896} TODO: What is the difference
-From Radiance Transport Equation {insert it here} to the integral equation which
-computes the outgoing radiance, Lo, at position, direction ($~x_o$,$~w_o$) and
-BSSRDF \textit{insest one here}
-
-
-\section{Quantized-diffusion model}
-Original paper \cite{D'Eon:2011:QMR:1964921.1964951}
-\begin{itemize}
-    \item Improved diffusion theory
-    \item Extended source term instead of just a dipole
-    \item More realistic look with sharper features
-    \item Much more complicated and time-consuming to calculate (DO I WANT TO COMPARE PERFORMANCE?)
-\end{itemize}
-D’Eon and Irving  greatly increased the accuracy of the dipole model, using a
-better approximation for the diffusion inside the material. Their approach still
-loses directional information, while \cite{holzschuch:hal-00760054} keep it. The
-difference could be important for anisotropic materials.
-The resulting diffuse reflectance profile was approximated as a sum of Gaussians.
-
-\section{Double scattering paper}
-\cite{Donner:2009:EBM} model is the most accurate to date (2013), but it has a
-high memory cost (up to 250 MB for each material). It is also limited to a
-single lobe. \cite{holzschuch:hal-00760054} extends and completes Donner's
-study. They also provide a model that is less accurate, but much more compact
-and can represent multiple lobes.
-
-Still use that assumption of boundary as an infinite plane.
-
-\section{Photon Beam diffusion}
-The photon beam diffusion \cite{Habel:2013:PBD:2600890.2600896} had three main
-contributions:
-\begin{itemize}
-    \item As accurate as quantized diffusion but much faster to evaluate,
-    \item An accurate diffuse single-scattering model
-    \item Elegant handling of oblique refraction into the material
-\end{itemize}
-
-\section{Diffusion profiles}
-\comment{Think about how to organize this section}
-\begin{itemize}
-    \item{Diffusion profiles can be measured from a real-world object by
-    analyzing scattering of laser \cite{Jensen:2001:PMS:383259.383319} or
-    structured light patterns \cite{tariq_efficient_2006-1} Big variaty of
-    liquids by dilusion was asquired in
-    \cite{Narasimhan:2006:ASP:1141911.1141986} but only single scattering
-    component (is it right)
-    \item{And the most advanced method capturing both single and multple
-    scattering is described \cite{Gkioulekas:2013:IVR:2508363.2508377}}}
-    \item{\cite{Nguyen:2007:GG:1407436} in \textit{GPU Gems 3} says that the
-    dipole and multipole functions mentioned already can be used to compute
-    diffusion profiles for any material with known scattering coefficients.
-    \item{In \cite{Frisvad:2014:DDM:2702692.2682629} introduces the directional
-    dipole}. This improves the accuracy for e.g. non-perpendicular (oblique)
-    illumination of objects with smooth refractive surfaces (such as milk, fruit
-    juice, and other liquids with suspended particles) }
-    \item{While knowing the correct diffusion profiles one can use fitting tool
-    to approximate them \cite{Nguyen:2007:GG:1407436}}
-\end{itemize}

@@ -40,6 +40,24 @@
 Focus on the rendering highly scattering materials with relatively small mean
 free path length between scattering events.
 
+Do not consider spectral scattering. Only monochromatic light is simulated.
+There are papers describing the process of combined rendering of RGB with
+corresponding importance sampling.
+
+Why not to use point cloud based approach:
+\begin{itemize}
+    \item{Ease of use for the user. Don't want to introduce more parameters to
+    control and require the end use to know the underlying algorithms}
+    \item{Undesired preprocessing step. Unfriendly to progressive rendering}
+    \item{Density of the generated PC limits the scope of the available
+    parameters. It restrics the effective width of the SSS by minimal distanse
+    between points. Point density $\approx$ mean free path}
+    \item{Workflow complications for storing PC and additional memory
+    requirements}
+    \item{Possible flickering artifacts during animation}
+    \item{Additional memory required}
+\end{itemize}
+
 \section{Unidirectional path tracing}
 Unidirectional path tracing \gls{UDPT} or simply path tracing is one of the
 fundamental methods of Monte Carlo light integration in computer graphics.

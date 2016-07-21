@@ -1,0 +1,28 @@
+\section{Christensen-Burley profile importance sampling}
+\label{section:burley_importance}
+
+Imortance sampling of the aforementioned BSSRDF function is a vital part of the
+rendering system used in real world production. Analogously to the original
+paper derivation, the \gls{CDF} of the modified Christensen-Burley \gls{BSSRDF}
+profile is expressed by the following expression: \comment{Todo: add full
+derivation}
+\begin{equation}\label{eq:burley_cdf}
+CDF(R_d) = 1-\frac{1}{4}e^{-sx}-\frac{3}{4}e^{-\frac{1}{3}tx}
+\end{equation}
+
+The inversion of \eqref{eq:burley_cdf} Authors of original method suggests three
+way of imp Sampling of each exponental separatly leads to six Importance Samples in total
+in RGB mode.
+Newton iterations show more robust results than sampling of the each exponent
+separately.
+
+Quote: Sampling can be difficult and expensive. Diffusion
+integration requires distributing samples over the entire surface with known
+density, preferably proportional to the diffusion profile. We can generate
+such samples within a plane, but projecting this density through a solid can
+oversample some parts of the surface and undersample others. Using MIS between
+multiple planes \cite{King:2013:BIS:2504459.2504520}  helps prevent
+undersampling but oversampling is still a problem. Each plane sample also
+requires ray probing to find surface hits, and if there are multiple
+intersections we build a conditional CDF based on the distance to each point,
+then stochastically choose a point to sample. The per-sample cost is substantial

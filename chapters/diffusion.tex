@@ -22,37 +22,107 @@ diffusion profiles are often too blurry given that they typically only model
 multiple scattering, leading to the use of two or more profiles combined in an
 ad hoc manner.
 
-\section{Diffusion profiles}
-\comment{Think about how to organize this section}
+
+\input{chapters/diffusion/christensen_burley}
+
+\section{Change in the Christensen-Burley profile to better fit Monte
+Carlo references}
+
+
+\textit{Note about Monte Carlo references:
+There are consistent results achieved for Searchlight experiment
+(semi-infinite slab with narrow pencil beam of light pointing from top in the normal
+direction). In which brute force Monte-Carlo simulation in P2 (path tracing) was
+compared to PTDL approach and also to hybrid technique used in Mitsuba
+renderer. All three methods produce the same result in the scope of their
+capabilities. It give us some assurance of the correctness of the Monte-Carlo
+algorithms which are used as the references.}
+
+
+\begin{figure}
+    \centering
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{imgs/plots/burley_old_fitting}
+        \caption{Original Christensen-Burley}
+    \end{subfigure}
+    \quad
+    \begin{subfigure}{0.48\textwidth}
+        \includegraphics[width=\textwidth]{imgs/plots/burley_new_fitting}
+        \caption{Proposed}
+    \end{subfigure}
+
+    \caption{Comarison between the original and proposed techniques in log-y
+    scale. Monte Carlo references are inthin lines. TODO: make clear plots and
+    accompany them with rendered images}
+    \label{fig:burley_fitting}
+\end{figure}
+
+As we can see from the graph \ref{fig:burley_fitting}, there is a tendency for
+the original model to overestimate outgoing radiant exitance in the region close
+to the light source (around $x\leq=3$). This trend was observed in many
+experiments with different optical properties of the material.
+
+The proposed model has different the factorization of the exponents than the
+original \gls{BSSRDF} profile. Instead of using unified parameter $s$, I propose
+to split it into two factors for each of the exponent:
+
+\begin{equation}\label{eq:burley_modified}
+R_{l=1}(r) = A\dfrac{se^{-sr}+te^{-tr/3}}{8\pi r}
+\end{equation}
+
+It still allows to easily normalize the model and use the same technique for
+importance sampling. The particular form of s and t is based on the original
+function developed by Christensen et al., but has a linear function coefficient
+to get better results.
+
+\ldots
+
+\input{chapters/diffusion/christensen_burley_importance}
+
+\section{BSSRDF parametrization}
+Physically based parameters $\sigma_s$ and $\sigma_a$ are used for the
+description of the material appearence in the context of subsurface
+scattering. The \textit{volumetric scattering albedo} coefficient
+$alpha = \sigma_s / \sigma_s+\sigma_a$ is used for the same purpose while using
+diffusion approximation
+
+
+In contrast, BSSRDF profile for the diffusion approximation proposed by Burley
+and Christensen relays on \textit{surface albedo} (diffuse surface reflectance)
+$A$ of the material:
+
+
+
+It can not be easily analytically computed at runtime out of $\sigma_s$ and $\sigma_a$. But we need it for unified parametrization on the materials independent of the rendering technique.
+
+By rendering different materials with various oprical properties and using curve
+fitting I've come up to the following expression:
+\[
+A(\alpha) = a + b(1- e^{-c\alpha})
+\]
+
+with parameters $a = 0.0699, b = -3.97\cdot 10^{-05}, c =-10.0$
+
+The results from the following plot show good match for Burley profiles (thick
+lines) to Monte Carlo references (thin lines) for high albedo materials (top
+four curves). But there is a significant difference for low albedo materials
+with approximately $A<0.3$
+
+Note that two lower thick lines does not not correspond to lower two thin lines.
+And this result is consistent with the assumptions of the diffusion theory of
+the light transport in participating media.
+
+
+
+\section{Sampling methods}
+
 \begin{itemize}
-    \item{Diffusion profiles can be measured from a real-world object by
-    analyzing scattering of laser \cite{Jensen:2001:PMS:383259.383319} or
-    structured light patterns \cite{tariq_efficient_2006-1} Big variaty of
-    liquids by dilusion was asquired in
-    \cite{Narasimhan:2006:ASP:1141911.1141986} but only single scattering
-    component (is it right)
-    \item{And the most advanced method capturing both single and multple
-    scattering is described \cite{Gkioulekas:2013:IVR:2508363.2508377}}}
-    \item{\cite{Nguyen:2007:GG:1407436} in \textit{GPU Gems 3} says that the
-    dipole and multipole functions mentioned already can be used to compute
-    diffusion profiles for any material with known scattering coefficients.
-    \item{In \cite{Frisvad:2014:DDM:2702692.2682629} introduces the directional
-    dipole}. This improves the accuracy for e.g. non-perpendicular (oblique)
-    illumination of objects with smooth refractive surfaces (such as milk, fruit
-    juice, and other liquids with suspended particles) }
-    \item{While knowing the correct diffusion profiles one can use fitting tool
-    to approximate them \cite{Nguyen:2007:GG:1407436}}
+    \item{Infinite plane disk sampling \cite{Jensen:2001:PMS:383259.383319}}
+    \item{Multiresolution radiosity caching \cite{Christensen:2012:MRC:2343045.2343108}}
+    \item{Bidirectional Lightcuts \cite{Walter:2012:BL:2185520.2185555}}
+    \item{Improved disk sampling \cite{King:2013:BIS:2504459.2504520}}\\
+    $\star$ \textit{Editors' choise}. This method was used in my implementation.
+    TODO: Detailed descriprion.
 \end{itemize}
 
-\section{Sampling}
-Why not to use point cloud based approach:
-\begin{itemize}
-  \item Ease of use for the user. Don't want to introduce more parameters to
-  control and require the end use to know the underlying algorithms
-  \item{Density of the generated PC limits the scope of the available
-  parameters: restrics the `width` of the SSS by minimal distanse between
-  points}
-  \item{Workflow complications for storing PC and additional memory
-  requirements}
-\end{itemize}
 

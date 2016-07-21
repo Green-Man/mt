@@ -144,58 +144,24 @@ contributions:
     \item Elegant handling of oblique refraction into the material
 \end{itemize}
 
-\section{Cristensen-Burley method}
-
-First appear in \cite{Burley:disney_siggraph15}. Proposed fitting of the
-diffusion profile on the basis of MC integration (multi+single):
-\[
-R_d(r) = \dfrac{e^{-r/d}+e^{-r/3d}}{8\pi dr}
-\]
-which is normalized over area and hemisphere:
-\[
-\int\limits_0^{2\pi}\int\limits_0^\infty R_d(r)rdrd\phi = 1
-\]
-The claim is Normalization -$>$ avoiding the need for albedo inversion. Why?
-
-\[
-R_{l=1}(r) = As\dfrac{e^{-sr}+e^{-sr/3}}{8\pi r}
-\]
-
-\[
-R_{l=1}(r) = A\dfrac{se^{-sr}+te^{-tr/3}}{8\pi r}
-\]
-where $A=\int_0^{\infty} R(r)2\pi rdr$
-
-\[
-A(\alpha) = a + b(1- e^{-c\alpha})
-\]
-
-with parameters $a = 0.0699, b = -3.97\cdot 10^{-05}, c =
--10.0$
-
-In the following paper \cite{Christensen:2015:ARP:2775280.2792555} shows simple
-equations to relate parameter $d$ to the physical mean free path from radiative
-transport. This model includes single scattering, so no expensive separate
-calculation is needed.
-
-CDF and inverted CDF are trivially derived, do importance sampling is not a
-problem for this model. This requires sampling of each exponental separatly. RGB
-also separated. Six Multiple Importance Samples in total.
-
-Cons of the model:
+\section{Diffusion profiles}
+\comment{Think about how to organize this section}
 \begin{itemize}
-  \item {Still follows the infinite plane geometry assumption. So fails on
-  large distance parameters. As all Diffusion approximation models}
-  \item {Surface normals are not considered. Thay is why cavities are probles
-  (without special treatment) and bump details are blurried}
-  \item{Quote: \textit{Sampling can be difficult and expensive. Diffusion
-  integration requires distributing samples over the entire surface with known
-  density, preferably proportional to the diffusion profile. We can generate
-  such samples within a plane, but projecting this density through a solid can
-  oversample some parts of the surface and undersample others. Using MIS between
-  multiple planes [KKCF13] helps prevent undersampling but oversampling is still
-  a problem. Each plane sample also requires ray probing to find surface hits,
-  and if there are multiple intersections we build a conditional CDF based on
-  the distance to each point, then stochastically choose a point to sample. The
-  per-sample cost is substantial}}
+    \item{Diffusion profiles can be measured from a real-world object by
+    analyzing scattering of laser \cite{Jensen:2001:PMS:383259.383319} or
+    structured light patterns \cite{tariq_efficient_2006-1} Big variaty of
+    liquids by dilusion was asquired in
+    \cite{Narasimhan:2006:ASP:1141911.1141986} but only single scattering
+    component (is it right)
+    \item{And the most advanced method capturing both single and multple
+    scattering is described \cite{Gkioulekas:2013:IVR:2508363.2508377}}}
+    \item{\cite{Nguyen:2007:GG:1407436} in \textit{GPU Gems 3} says that the
+    dipole and multipole functions mentioned already can be used to compute
+    diffusion profiles for any material with known scattering coefficients.
+    \item{In \cite{Frisvad:2014:DDM:2702692.2682629} introduces the directional
+    dipole}. This improves the accuracy for e.g. non-perpendicular (oblique)
+    illumination of objects with smooth refractive surfaces (such as milk, fruit
+    juice, and other liquids with suspended particles) }
+    \item{While knowing the correct diffusion profiles one can use fitting tool
+    to approximate them \cite{Nguyen:2007:GG:1407436}}
 \end{itemize}

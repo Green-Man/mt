@@ -1,0 +1,56 @@
+\section{Christensen-Burley method}
+The general problem discussed here is a search for a good diffusion
+approximation model to fit Monte Carlo references by using analytic BSSRDF function.
+
+The most recent research in this topic up to date
+\cite{Christensen:2015:ARP:2775280.2792555}, \cite{Burley:disney_siggraph15}
+suggested the \gls{BSSRDF} profile expressed as a combination of two exponential
+functions with corresponding parametrization factor based on physical properties
+of the media and proper normalization to ensure energy conservation. It was
+proposed as a better function instead of Gaussian and Cubic profiles described
+in the literature in the past and widely used.
+
+The original normalized diffuse reflectance profile:
+\begin{equation}\label{eq:burley_normalized}
+R_d(r) = \dfrac{e^{-r/d}+e^{-r/3d}}{8\pi dr}
+\end{equation}
+
+Equation \eqref{eq:burley_normalized} represents normalized form.
+with normalization over area and hemisphere ensures that no extra radiant energy
+is emitted or absorbed\footnote{Absorption is not accouned during the
+calculation of the shape of the diffusion profile. But is added late as
+part of the albedo} during scattering:
+\[
+\int\limits_0^{2\pi}\int\limits_0^\infty R_d(r)rdrd\phi = 1
+\]
+
+Which leads to the form:
+\begin{equation}\label{eq:burley}
+R_{l=1}(r) = As\dfrac{e^{-sr}+e^{-sr/3}}{8\pi r}
+\end{equation}
+With:
+\begin{itemize}
+    \item{$r$ is a distance between the points of light, entering and leaving
+    the surface (with the assumption of the planar geometry)}
+    \item{$s$ is a function of $A$, empirically chosen by Christen and Burley
+    to fit the Monte-Carlo references. For example, for the Searchlight
+    scenario, authors suggest $s = 1.85 - A + 7|A-0.8|^3$}
+    \item{ $A=\int_0^{\infty} R(r)2\pi rdr$ is the surface albedo (integral
+    amount of the radiant exitance over whole area of the object relative to the
+    overall irradiance). $A$ of the material depends on $\sigma_s$ and
+    $\sigma_a$. The particular form of this function, empirically chosen by
+    Christen and Burley to fit the Monte-Carlo references.}
+\end{itemize}
+
+This model includes single scattering, so no expensive separate
+calculation is needed.
+
+Cons of the model:
+\begin{itemize}
+  \item {As all other Diffusion approximation models, still follows the infinite
+  plane geometry assumption. So fails on large distance parameters. }
+  \item {Surface normals are not considered. Thay is why cavities are probles
+  (without special treatment) and bump details are blurried}
+  \item{Not that trivial importance sampling. See details in section
+  \ref{section:burley_importance}}
+\end{itemize}

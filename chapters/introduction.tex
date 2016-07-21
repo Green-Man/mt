@@ -62,6 +62,12 @@ Why not to use point cloud based approach:
 Unidirectional path tracing \gls{UDPT} or simply path tracing is one of the
 fundamental methods of Monte Carlo light integration in computer graphics.
 
+In practice, almost always contains Russian Roulette otimization. Detailed
+description is in section \ref{subsection:rr}. It is a robust technique, leaving
+the integrator unbiased. But may has some non obvious numerical problems
+especially while being used in scenarious like volumetric rendering (see
+chapter \ref{section:numerical})
+
 \ldots
 
 A typical disadvantage of the classic \gls{UDPT} is the high variance and
@@ -82,7 +88,6 @@ limitations.
         \caption{general}
         \label{fig:bdptgeneral}
     \end{subfigure}
-    \quad
     \begin{subfigure}{0.45\textwidth}
         \includegraphics[width=\textwidth]{imgs/schemes/PT2_resize}
         \caption{special}
@@ -140,4 +145,31 @@ optically low dense materials. Light propagation in highly scattering media, in
 contrast, is charachterized by many scattering events. Which makes the direction
 of the first ray less important for the future light simulation.
 
+\section{Intuition behind Diffusion approximation and BSSRDF formulation}
 
+\subsection{Analogy to BRDF approximation}
+Formulate scattering in media in analogy to local surface reflectance (BRDF)
+
+\subsection{Single scattering and Multiple scattering}
+Decompose into single- and multiscattering terms
+
+\subsection{Searchlight problem formulation}
+Simplify model to the 'Searchlight Problem' to allow analytic solutions
+Perpendicular light beam to infinite surface \cite{Jacques1995}
+\begin{figure}[h]
+    \centering
+    \includegraphics[width=\textwidth]{imgs/schemes/searchlight_disney}
+    \caption{Schematic view of the searchlight experiment. To change.}
+    \label{fig:searchlight_scheme}
+\end{figure}
+
+The term is: \gls{infiniteslab}
+
+\section{Scattering in the thin objecs}
+Diffuse transmission BTDF as a fast approximation of subsurface scattering in
+thin materials.
+Many real world objects like sheets of paper or foliege of the trees has strong
+scattering component. There is a simple and inexpensive technique to approximate
+scattering in such objects by using the Lambertian BTDF.
+
+\ldots

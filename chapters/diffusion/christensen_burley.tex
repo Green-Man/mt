@@ -7,24 +7,10 @@ The most recent research in this topic up to date
 suggested the \gls{BSSRDF} profile expressed as a combination of two exponential
 functions with corresponding parametrization factor based on physical properties
 of the media and proper normalization to ensure energy conservation. It was
-proposed as a better function instead of Gaussian and Cubic profiles described
-in the literature in the past and widely used.
+proposed as function which better fit Monte Carlo references than widely used
+Gaussian and Cubic profiles.
 
-The original normalized diffuse reflectance profile:
-\begin{equation}\label{eq:burley_normalized}
-R_d(r) = \dfrac{e^{-r/d}+e^{-r/3d}}{8\pi dr}
-\end{equation}
-
-Equation \eqref{eq:burley_normalized} represents normalized form.
-with normalization over area and hemisphere ensures that no extra radiant energy
-is emitted or absorbed\footnote{Absorption is not accouned during the
-calculation of the shape of the diffusion profile. But is added late as
-part of the albedo} during scattering:
-\[
-\int\limits_0^{2\pi}\int\limits_0^\infty R_d(r)rdrd\phi = 1
-\]
-
-Which leads to the form:
+The original proposed diffuse reflectance profile:
 \begin{equation}\label{eq:burley}
 R_{l=1}(r) = As\dfrac{e^{-sr}+e^{-sr/3}}{8\pi r}
 \end{equation}
@@ -37,20 +23,24 @@ With:
     scenario, authors suggest $s = 1.85 - A + 7|A-0.8|^3$}
     \item{ $A=\int_0^{\infty} R(r)2\pi rdr$ is the surface albedo (integral
     amount of the radiant exitance over whole area of the object relative to the
-    overall irradiance). $A$ of the material depends on $\sigma_s$ and
-    $\sigma_a$. The particular form of this function, empirically chosen by
+    overall irradiance). Surface albedo of the material depends on $\sigma_s$
+    and $\sigma_a$. The particular form of this function, empirically chosen by
     Christen and Burley to fit the Monte-Carlo references.}
 \end{itemize}
 
-This model includes single scattering, so no expensive separate
-calculation is needed.
+In contrast to the other diffusion approximation techniques proposed in the past
+(Dipole, Quantized diffusion), this model already includes single scattering
+component, so no expensive separate calculation is needed.
 
-Cons of the model:
+
+According to the authors, the main disadvantages of the model are:
 \begin{itemize}
-  \item {As all other Diffusion approximation models, still follows the infinite
-  plane geometry assumption. So fails on large distance parameters. }
-  \item {Surface normals are not considered. Thay is why cavities are probles
-  (without special treatment) and bump details are blurried}
+  \item {As all other Diffusion approximation models, it still follows the
+  infinite plane geometry assumption
+  }
+  \item {Surface normals are not considered. That is why, cavities in
+  geometry are problemmatic to render correctly without special treatment. And
+  bump details are blurried}
   \item{Not that trivial importance sampling. See details in section
   \ref{section:burley_importance}}
 \end{itemize}

@@ -8,6 +8,14 @@ integrals on the surface and in the media to integrate using with Monte Carlo
 approach.
 A nice picture explaining BDPT is also there.
 
+\subsection{Russian roulette}
+\label{subsection:rr}
+Not a variance reduction in mathematical sense. Strictly speaking, it it even
+increases the variance of the estimator. But reduces to cost of sampling in
+average \cite{Veach:1998:RMC:927297}, \cite{Csi03variancereduction}
+
+\ldots
+
 \subsection{Emission}
 \subsection{Absorption}
 \subsection{Scattering}
@@ -94,22 +102,6 @@ it \cite{Habel:2013:PBD:2600890.2600896} TODO: What is the difference
 From Radiance Transport Equation {insert it here} to the integral equation which
 computes the outgoing radiance, Lo, at position, direction ($~x_o$,$~w_o$) and
 BSSRDF \textit{insest one here}
-
-\section{King at. al.}
-Simple Gausseian profile is:
-\[
-R_d(r) = \dfrac{1}{2\pi \nu}e^{-r^2/2\nu}
-\]
-then radial distribution over disc is:
-\[
-pdf_{disc}(r) = \dfrac{R_d(r)}{1-e^{-{R_m}^2/2 \nu}}
-\]
-\[
-r(\xi) = \sqrt{-2\nu \log(1-\xi(1-e^{-{R_m}^2/2 \nu))}}
-\]
-\[
-R_m = \sqrt{12.46\nu}
-\]
 
 
 \section{Quantized-diffusion model}

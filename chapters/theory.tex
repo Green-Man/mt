@@ -3,10 +3,22 @@
 
 
 \section{Monte Carlo methods}
-\cite{Lafortune:1996:RPM:275458.275468} has short but decent description of the
-integrals on the surface and in the media to integrate using with Monte Carlo
-approach.
+\label{Monte-Carlo}
+\cite{Lafortune:1996:RPM:275458.275468} has short but decent description of the integrals on the
+surface and in the media to integrate using with Monte Carlo approach.
 A nice picture explaining BDPT is also there.
+\subsection{Importance sampling}
+\label{ImportanceSampling}
+\emph{In order to reduce variance,  it is desirable to importance sample reflected rays by
+preferentially considering paths carrying high energy.} \emph{The benefit of stratified importance
+sampling  within  the  context  of  physically-based rendering  has  certainly  been  justified by 
+the  work  of Cook  [1986].   Since  Shirley demonstrated  how  to  efficiently  sample  the 
+traditional  Phong BRDF  [Shirley  1990]  and Lafortune  introduced  a  generalization of  this 
+cosine-lobe  model  [Lafortune  et  al.  1997], a  reasonable approach to importance sampling an
+arbitrary BRDF has been to sample  a  best-fit approximation  of  one  of  these  simpler  models.
+Although this technique marks a clear improvement over random sampling,  it has several drawbacks.
+First, it is not always trivial to approximate the many complex BRDFs that exist in nature with one
+of these models.}
 
 \subsection{Russian roulette}
 \label{subsection:rr}
@@ -26,18 +38,15 @@ average \cite{Veach:1998:RMC:927297}, \cite{Csi03variancereduction}
 Take home notes from it: \gls{hg} is not general enough (can't represent some
 materials). Uniform parametrization needs requires to expose $g^2$ to the user.
 
-TODO: while inroducing phase function, try to render single photon inside the
-media and visualize it with plotly as Andreas did in pseudo 3d. TO illustrate
-random walk directions with different Henyey-Greenstein \textbf{g}.
-
-Question: What are materials with high albedo and strong backward scattering
-and high scattering coefficient? Do they exist? How they look like?
+\emph{TODO: while inroducing phase function, try to render single photon inside
+the media and visualize it with plotly as Andreas did in pseudo 3d. To illustrate
+random walk directions with different Henyey-Greenstein \textbf{g}.}
 
 \section{The Diffusion Approximation}
-Applies to the highly scattering media: relation to the Central Limit Theorem
-The approach underlying the application of diffusion approximations is comparable to that underlying normal approximation for
-sums of random variables. In the latter setting, the central limit theorem
-permits one to replace the analytically intractable sum of random variables by
+Applies to the highly scattering media: relation to the Central Limit Theorem.
+The underlying approach is similar to using a normal distribution for the sum of
+random variables.
+In the latter setting, the central limit theorem permits one to replace the analytically intractable sum of random variables by
 an appropriately chosen normal random variable.
 
 Probably first description is \cite{Stam1995}

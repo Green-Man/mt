@@ -1,28 +1,58 @@
 \section{Christensen-Burley profile importance sampling}
 \label{section:burley_importance}
 
-Imortance sampling of the aforementioned BSSRDF function is a vital part of the
-rendering system used in real world production. Analogously to the original
-paper derivation, the \gls{CDF} of the modified Christensen-Burley \gls{BSSRDF}
-profile is expressed by the following expression: \comment{Todo: add full
-derivation}
-\begin{equation}\label{eq:burley_cdf}
-CDF(R_d) = 1-\frac{1}{4}e^{-sx}-\frac{3}{4}e^{-\frac{1}{3}tx}
+Importance sampling of the BSSRDF function is a vital part of the
+rendering system used in practice. The short theory of importance sampling is given in the section
+\ref{ImportanceSampling}. According to it, we need to derive \gls{CDF} of the profile and invert it to find
+the corresponding sampling. Analogously to the derivation provided in the original paper
+\cite{Christensen:2015:ARP:2775280.2792555}, the \gls{CDF} of the modified Christensen-Burley
+\gls{BSSRDF} profile \ref{eq:burley_modified} is expressed by the following expression:
+\[
+\label{eq:burley_cdf}
+CDF(R_d(r)) = \int_{0}^{r} R_d(x)2\pi xdx = \int_{0}^{r} A\frac{s e^{-sx}+t e^{-tx/3}}{8\pi x}2\pi
+xdx = A(1-\frac{1}{4}e^{-sr}-\frac{3}{4}e^{-\frac{tr}{3}})
+\]
+
+Let $\xi$ be uniformly distributed random variable withing the range from 0 to 1. To find the
+sampling of the radius $r$ according to the \ref{eq:burley_modified}, the following equation have to
+be solved (inversion step):
+\begin{equation}
+\label{eq:inversion}
+\xi=A(1-\frac{1}{4}e^{-sr}-\frac{3}{4}e^{-\frac{tr}{3}})
 \end{equation}
 
-The inversion of \eqref{eq:burley_cdf} Authors of original method suggests three
-way of imp Sampling of each exponental separatly leads to six Importance Samples in total
-in RGB mode.
-Newton iterations show more robust results than sampling of the each exponent
-separately.
+This step would in theory result in the corresponding function $r(\xi)$ which can be used to
+generate samples. But the fact that there is no analytical solution to equation
+\ref{eq:inversion} makes it not that trivial to use in practice.
+There are three main approaches to overcome this difficulty:
+\begin{enumerate}
+  \item Precompute the solution before rendering and use a lookup table with interpolation
+  during the runtime
+  \item Sample each of the exponential of the right side of the equation \ref{eq:burley_modified}
+  separately and combine the result
+  \item Solve the equation numerically in runtime for each sample on demand
+\end{enumerate}
 
-Quote: Sampling can be difficult and expensive. Diffusion
+The derivative of CDF:
+\[
+\frac{dCDF(R_d(r))}{dr} = \frac{A}{4}(se^{-sr}+te^{-\frac{tr}{3}})
+\]
+
+Sampling each of the exponential separately leads to six importance Samples in
+total in RGB mode.
+
+\textbf{The main point of this section:}
+Couple of Newton iterations to invert CFD show more robust results than
+combination of the sampling of the each exponent separately.
+
+\emph{Quote: Sampling can be difficult and expensive. Diffusion
 integration requires distributing samples over the entire surface with known
 density, preferably proportional to the diffusion profile. We can generate
-such samples within a plane, but projecting this density through a solid can
-oversample some parts of the surface and undersample others. Using MIS between
-multiple planes \cite{King:2013:BIS:2504459.2504520}  helps prevent
+such samples within a plane, but projecting this density through a solid may
+lead to oversampling of some parts of the surface and undersampling of the
+others.
+Using MIS between multiple planes \cite{King:2013:BIS:2504459.2504520}  helps prevent
 undersampling but oversampling is still a problem. Each plane sample also
 requires ray probing to find surface hits, and if there are multiple
 intersections we build a conditional CDF based on the distance to each point,
-then stochastically choose a point to sample. The per-sample cost is substantial
+then stochastically choose a point to sample.}

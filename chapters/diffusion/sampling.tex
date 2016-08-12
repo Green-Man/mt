@@ -1,5 +1,5 @@
 \section{Sampling methods}
-
+\label{sampling_methods}
 \begin{itemize}
     \item{Infinite plane disk sampling \cite{Jensen:2001:PMS:383259.383319}}
     \item{Multiresolution radiosity caching \cite{Christensen:2012:MRC:2343045.2343108}}
@@ -8,3 +8,15 @@
     $\star$ \textit{Editors' choise}. This method was used in my implementation.
     TODO: Detailed descriprion.
 \end{itemize}
+
+\emph{Quote \cite{Burley:disney_siggraph15}: Sampling can be difficult and expensive. Diffusion
+integration requires distributing samples over the entire surface with known
+density, preferably proportional to the diffusion profile. We can generate
+such samples within a plane, but projecting this density through a solid may
+lead to oversampling of some parts of the surface and undersampling of the
+others.
+Using MIS between multiple planes \cite{King:2013:BIS:2504459.2504520}  helps prevent
+undersampling but oversampling is still a problem. Each plane sample also
+requires ray probing to find surface hits, and if there are multiple
+intersections we build a conditional CDF based on the distance to each point,
+then stochastically choose a point to sample.}

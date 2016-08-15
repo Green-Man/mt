@@ -1,18 +1,17 @@
 \section{Christensen-Burley method}
-The general problem discussed here is a search for a good diffusion
-approximation model to fit Monte Carlo references by using analytic BSSRDF function.
+The general problem discussed here is a search for a good diffusion approximation model to fit Monte
+Carlo references by using analytic BSSRDF function.
 
 The most recent research in this topic up to date
 \cite{Christensen:2015:ARP:2775280.2792555}, \cite{Burley:disney_siggraph15}
-suggested the \gls{BSSRDF} profile expressed as a combination of two exponential
-functions with corresponding parametrization factor based on physical properties
-of the media and proper normalization to ensure energy conservation. It was
-proposed as function which better fit Monte Carlo references than widely used
-Gaussian and Cubic profiles.
+suggested the \gls{BSSRDF} profile expressed as a combination of two exponential functions with
+corresponding parametrization factor based on physical properties of the media and proper
+normalization to ensure energy conservation. It was proposed as function which better fit Monte
+Carlo references than widely used Gaussian and Cubic profiles.
 
 The original proposed diffuse reflectance profile:
 \begin{equation}\label{eq:burley}
-R_{l=1}(r) = As\dfrac{e^{-sr}+e^{-sr/3}}{8\pi r}
+R_{d,l=1}(r) = As\dfrac{e^{-sr}+e^{-sr/3}}{8\pi r}
 \end{equation}
 With:
 \begin{itemize}
@@ -28,9 +27,16 @@ With:
     Christen and Burley to fit the Monte-Carlo references.}
 \end{itemize}
 
-In contrast to the other diffusion approximation techniques proposed in the past
-(Dipole, Quantized diffusion), this model already includes single scattering
-component, so no expensive separate calculation is needed.
+
+Note, that here and in further calculations the formulas for the diffusion reflectance will be
+provided with the assumption of the unit mean free path $l = 1/(\sigma_s + \sigma_a)=1$.
+\comment{To explain the why}
+This does not brake the principal shape of the profile. And the implementation of the arbitrary
+spacial scaling does not expose any difficulties.
+
+In contrast to the other diffusion approximation techniques proposed in the past (Dipole, Quantized
+diffusion), this model already includes single scattering component, so no expensive separate
+calculation is needed.
 
 
 According to the authors, the main disadvantages of the model are:

@@ -169,3 +169,5 @@ refs_pdf/
 /tmp/
 presentations/*
 /tempPartial00000.tex
+*.rar
+.externalToolBuilders

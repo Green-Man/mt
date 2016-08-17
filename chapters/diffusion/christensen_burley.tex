@@ -1,52 +1,54 @@
 \section{Christensen-Burley method}
-The general problem discussed here is a search for a good diffusion approximation model to fit Monte
-Carlo references by using analytic BSSRDF function.
+The general problem discussed in this section is a search for a good diffusion approximation model
+to fit Monte Carlo references by using analytic BSSRDF function. The most recent research in the topic
+\cite{Burley:disney_siggraph15}, \cite{Christensen:2015:ARP:2775280.2792555} suggests the
+\gls{BSSRDF} profile expressed as a combination of two exponential functions with corresponding
+parametrization factor based on physical properties of the media and proper normalization to ensure
+energy conservation. It was proposed as function which better fit Monte Carlo references than widely
+used Gaussian and Cubic profiles \cite{King:2013:BIS:2504459.2504520}.
 
-The most recent research in this topic up to date
-\cite{Christensen:2015:ARP:2775280.2792555}, \cite{Burley:disney_siggraph15}
-suggested the \gls{BSSRDF} profile expressed as a combination of two exponential functions with
-corresponding parametrization factor based on physical properties of the media and proper
-normalization to ensure energy conservation. It was proposed as function which better fit Monte
-Carlo references than widely used Gaussian and Cubic profiles.
-
-The original proposed diffuse reflectance profile:
+Short form of the Christensen-Burley diffuse reflectance profile:
 \begin{equation}\label{eq:burley}
-R_{d,l=1}(r) = As\dfrac{e^{-sr}+e^{-sr/3}}{8\pi r}
+R_d(r) = As\dfrac{e^{-sr}+e^{-sr/3}}{8\pi r}
 \end{equation}
-With:
+Where:
 \begin{itemize}
-    \item{$r$ is a distance between the points of light, entering and leaving
-    the surface (with the assumption of the planar geometry)}
-    \item{$s$ is a function of $A$, empirically chosen by Christen and Burley
-    to fit the Monte-Carlo references. For example, for the Searchlight
-    scenario, authors suggest $s = 1.85 - A + 7|A-0.8|^3$}
+    \item{$r$ is a distance between the points where light enters and leaves the surface. Assumption
+    of planar geometry applies}
     \item{ $A=\int_0^{\infty} R(r)2\pi rdr$ is the surface albedo (integral
     amount of the radiant exitance over whole area of the object relative to the
     overall irradiance). Surface albedo of the material depends on $\sigma_s$
-    and $\sigma_a$. The particular form of this function, empirically chosen by
-    Christen and Burley to fit the Monte-Carlo references.}
+    and $\sigma_a$. Section \ref{section:cb_parametrization}}
+    \item{$s$ is a scaling factor function of $A$, empirically chosen by Christen and Burley
+    to fit the Monte-Carlo references. The particular form of this function is discussed in section
+    \ref{section:cb_modification} of this chapter below}
 \end{itemize}
 
+Note, that \emph{volume mean free path} $l = 1/(\sigma_s + \sigma_a)$ is included in the full
+formulation of the Christensen-Burley profile:
+\[
+R_d(r) = As\frac{e^{-sr/l}+e^{-sr/3l}}{8\pi lr} = As\frac{e^{-sr^\prime}+e^{-sr^\prime/3}}{8\pi
+r^\prime l^2}
+\]
+But the dependency on $l$ only affects the scale of the BSSRDF profile and not it's shape. The
+integration of the of the additional spatial scaling does not show any principal difficulties. That
+is why it can be included in the scaling factor and all further calculation will assume the
+Christensen-Burley profile in the normalized form \ref{eq:burley}.
 
-Note, that here and in further calculations the formulas for the diffusion reflectance will be
-provided with the assumption of the unit mean free path $l = 1/(\sigma_s + \sigma_a)=1$.
-\comment{To explain the why}
-This does not brake the principal shape of the profile. And the implementation of the arbitrary
-spacial scaling does not expose any difficulties.
+In contrast to the other diffusion approximation techniques proposed in the past (Dipole
+(\cite{Jensen:2001:PMS:383259.383319}), Quantized diffusion
+(\cite{D'Eon:2011:QMR:1964921.1964951})), this model already includes single scattering component,
+so no expensive separate calculation is needed.
 
-In contrast to the other diffusion approximation techniques proposed in the past (Dipole, Quantized
-diffusion), this model already includes single scattering component, so no expensive separate
-calculation is needed.
-
-
-According to the authors, the main disadvantages of the model are:
+According to authors of the original paper, the main disadvantages of the model are:
 \begin{itemize}
-  \item {As all other Diffusion approximation models, it still follows the
-  infinite plane geometry assumption
-  }
-  \item {Surface normals are not considered. That is why, cavities in
-  geometry are problematic to render correctly without special treatment. And
-  bump details are bluried}
+  \item {The model follows the infinite plane geometry assumption as all other Diffusion
+  approximation models}
+  \item {Surface normals are not considered. That is why, cavities of the
+  geometry are problematic to render correctly without special treatment. Bump details are blurred}
   \item{Not that trivial importance sampling. See details in section
   \ref{section:burley_importance}}
 \end{itemize}
+
+Next section of this chapter contain the discussion of the Christensen-Burley BSSRDF in more
+details.

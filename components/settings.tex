@@ -8,6 +8,9 @@
 \ifoot[\footertext]{\footertext} % \footertext set in INFO.TEX
 %\setkomafont{pagehead}{\normalfont\rmfamily}
 \setkomafont{pagenumber}{\normalfont\rmfamily}
+\setkomafont{caption}{\footnotesize\itshape}
+\setkomafont{captionlabel}{\usekomafont{caption}}
+
 
 %% allow sophisticated control structures
 \usepackage{ifthen}
@@ -49,7 +52,7 @@
 \usepackage{makeidx}
 
 % Improves the interface for defining floating objects such as figures and tables
-\usepackage{float}
+%\usepackage{float}
 
 % Bibliography in the Table of Content
 \usepackage[nottoc,numbib]{tocbibind}
@@ -70,12 +73,14 @@
 
 \usepackage{graphicx}
 \DeclareGraphicsExtensions{.jpg,.JPG,.png,.pdf,.eps}
-\graphicspath{{imgs/}} 
- 
+
+\graphicspath{{imgs/} {imgs/schemes/}} 
+
 
 \usepackage{float}
 \usepackage{rotating}
 
+\usepackage{wrapfig}
 
 \usepackage[pdftex,colorlinks=true,linkcolor=black,citecolor=blue,%
 anchorcolor=red,urlcolor=red,bookmarks=true,%

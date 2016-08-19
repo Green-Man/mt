@@ -3,14 +3,14 @@
 \renewcommand{\sectfont}{\normalfont \bfseries}
 
 % manipulate footer
-\usepackage{scrpage2}
+\usepackage[headsepline,footsepline]{scrlayer-scrpage}
 \pagestyle{scrheadings}
 \ifoot[\footertext]{\footertext} % \footertext set in INFO.TEX
 %\setkomafont{pagehead}{\normalfont\rmfamily}
 \setkomafont{pagenumber}{\normalfont\rmfamily}
 \setkomafont{caption}{\footnotesize\itshape}
 \setkomafont{captionlabel}{\usekomafont{caption}}
-
+%\usepackage{showframe}
 
 %% allow sophisticated control structures
 \usepackage{ifthen}

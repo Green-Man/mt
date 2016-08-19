@@ -1,0 +1,63 @@
+\section{Scope of the topic}
+\label{section:scope}
+In this paper I study Monte Carlo rendering of the subsurface scattering
+materials, both in the context of light simulation and approximate rendering.
+The main interest is in the correctness of the methods and the
+consistency of the results between them. With the discussion of the optimisation
+techniques applicable in certain scenarios.
+
+I focus on the methods of the rendering of highly scattering isotropic materials
+which usually appear as optically thick objects.
+
+These are examples of the materials which, in most cases, meet this condition.
+\begin{itemize}
+    \item Non-organic
+    \begin{itemize}
+        \item Marble (polished, rough, dusty)
+        \item Plastics or waxes
+        \item Snow
+        \item Thin sheets (paper, foliage, cloth)
+        \item Non photo real (Cartoon style and stylisation)
+    \end{itemize}
+    \item Organics
+    \begin{itemize}
+    \item Optically thick liquids (milk, some kinds of juice)
+        \item Skin (sweaty, dry, makeup)
+        \item Food (cheese, meat, bread, some kinds of fruits)
+    \end{itemize}
+\end{itemize}
+These are examples of materials out of the scope:
+\begin{itemize}
+    \item Highly transparent liquids (dirty/dusty water, ocean water, wine)
+    \item Fluids (air, fog, dust)
+\end{itemize}
+I consider only isotropic media which are modeled by means of geometric
+polygonal meshes. The constraint of the closed shape in not applicable to all
+the methods discussed and will be discussed later.
+
+I do not consider spectral scattering. Only monochromatic light is simulated.
+There are papers describing the process of combined rendering of RGB with
+corresponding importance sampling. To add.
+
+Why not to use cached data structures approach:
+\begin{itemize}
+    \item{Ease of use for the user. Don't want to introduce a lot of control
+    parameters which often require the end user to learn the details of the
+    underlying algorithms}
+    \item{Undesired preprocessing step. Unfriendly to progressive rendering}
+    \item{Density of the generated point cloud (or other stucture) limits the
+    scope of the available parameters. It restrics the effective width of the
+    SSS by minimal distanse between points, for example. Point density $\approx$
+    mean free path}
+    \item{Possible flickering artifacts during animation}
+    \item{Additional memory requirements}
+    \item{Workflow complications for storing additional data}
+\end{itemize}
+
+Other things to consiger while choosing method:
+\begin{itemize}
+  \item Lighting restrictions \emph{Analytic light} sources and \emph{area lights and IBL} friendly
+  \item Parametrization: Artist friendly or physically correct
+  \item Homogeneous or inhomogeneous
+  \item Performance. Is it suitable for real time application?
+\end{itemize}

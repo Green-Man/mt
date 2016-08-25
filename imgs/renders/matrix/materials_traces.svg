@@ -1,0 +1,325 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 744.09448819 1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   inkscape:export-filename="D:\docs\mt\imgs\plots\materials_traces.png"
+   inkscape:export-xdpi="260"
+   inkscape:export-ydpi="260"
+   sodipodi:docname="materials_traces.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="396.13857"
+     inkscape:cy="482.71765"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1920"
+     inkscape:window-height="1129"
+     inkscape:window-x="-4"
+     inkscape:window-y="-4"
+     inkscape:window-maximized="1"
+     showguides="false" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="bg"
+     inkscape:groupmode="layer"
+     id="layer1"
+     style="display:none">
+    <image
+       sodipodi:absref="D:\docs\mt\imgs\plots\matrix_with_measurements.png"
+       y="-2.2737368e-013"
+       x="0"
+       id="image4144"
+       xlink:href="file:///D:/docs/mt/imgs/plots/matrix_with_measurements.png"
+       preserveAspectRatio="none"
+       height="1051.8605"
+       width="743.70496" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="mustard"
+     style="display:inline">
+    <path
+       style="display:inline;opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#808000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:8, 4;stroke-dashoffset:0"
+       d="m 231.13452,660.82245 c -25.91407,9.03914 -60.24516,29.25504 -59.71769,56.71045 0.55872,29.0821 37.86052,48.63329 65.51639,57.59344 24.32308,7.88036 52.85146,2.81811 76.35626,-7.24592 20.43789,-10.22807 45.01774,-34.82718 43.04371,-59.13206 -1.55353,-19.12742 -23.53703,-32.38631 -40.93954,-40.45174 -25.58534,-11.85786 -57.63397,-16.76134 -84.25913,-7.47417 z"
+       id="path4149"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="aaacaaa"
+       inkscape:export-xdpi="96.650703"
+       inkscape:export-ydpi="96.650703" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="208.57143"
+       y="795.21936"
+       id="text4207"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4209"
+         x="208.57143"
+         y="795.21936"
+         style="font-size:20px;fill:#808000;fill-opacity:1">mustard</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="liquid clay">
+    <path
+       style="display:inline;opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#58b1e2;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:8,4;stroke-dashoffset:0"
+       d="m 561.04639,883.51409 c 1.33403,17.51736 8.6592,47.71064 26.12045,45.77619 17.33356,-1.9203 16.19795,-32.59586 15.35425,-50.01504 -0.86972,-17.95648 -2.76073,-50.0397 -20.73649,-49.78677 -19.28781,0.27139 -22.20297,34.79159 -20.73821,54.02562 z"
+       id="path4149-1-5-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="aaaaa"
+       inkscape:export-xdpi="96.650703"
+       inkscape:export-ydpi="96.650703" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#57e26b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="523.44971"
+       y="952.10919"
+       id="text4207-0-0-9"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="523.44971"
+         y="952.10919"
+         style="font-size:20px;fill:#57ace2;fill-opacity:1;stroke:none;stroke-opacity:1"
+         id="tspan4242-4-5">liquid clay</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="hand cream">
+    <path
+       style="display:inline;opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#58e26f;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:8,4;stroke-dashoffset:0"
+       d="m 471.2073,699.24447 c 1.24042,50.99499 0.50349,152.74915 31.17121,149.8219 23.04894,-2.20004 23.72584,-94.83654 24.44563,-144.96938 0.88417,-61.58258 4.25491,-181.38593 -27.80756,-181.1066 -34.20995,0.29804 -29.25562,116.79351 -27.80928,176.25408 z"
+       id="path4149-1-5"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="asssa"
+       inkscape:export-xdpi="96.650703"
+       inkscape:export-ydpi="96.650703" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#57e26b;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="438.66144"
+       y="871.88525"
+       id="text4207-0-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="438.66144"
+         y="871.88525"
+         style="font-size:20px;fill:#57e26b;fill-opacity:1"
+         id="tspan4242-4">hand cream</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="milk soap"
+     style="display:inline">
+    <path
+       style="display:inline;opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#a09d9a;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:8,4;stroke-dashoffset:0"
+       d="m 518.63512,663.25363 c -22.73518,2.32254 -60.17273,12.38685 -59.71769,29.67999 0.46296,17.59407 41.82172,27.28484 65.51639,27.59344 25.77672,0.33572 52.38366,0.43871 76.35626,-4.72054 17.41192,-3.7473 43.38771,-10.15841 43.04371,-27.11175 -0.31929,-15.73549 -29.51823,-21.61602 -40.93954,-23.52281 -28.05917,-4.68448 -57.007,-4.70231 -84.25913,-1.91833 z"
+       id="path4149-1"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ssssass"
+       inkscape:export-xdpi="96.650703"
+       inkscape:export-ydpi="96.650703" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#a09c99;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="486.98068"
+       y="739.3053"
+       id="text4207-0"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="486.98068"
+         y="739.3053"
+         style="font-size:20px;fill:#a09c99;fill-opacity:1"
+         id="tspan4242">milk soap</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer6"
+     inkscape:label="whole milk"
+     style="display:inline">
+    <path
+       style="display:inline;opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#2c2c00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:8, 4;stroke-dashoffset:0"
+       d="m 386.30117,1006.9865 c 0.78968,16.797 51.16684,16.8696 77.63822,16.7077 24.58923,-0.1504 72.12555,-4.1181 71.92279,-16.4008 -0.30199,-18.29314 -45.8727,-19.82956 -70.23396,-20.24871 -27.26104,-0.46904 -80.12828,2.89907 -79.32705,19.94181 z"
+       id="path4149-4"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="sasas"
+       inkscape:export-xdpi="96.650703"
+       inkscape:export-ydpi="96.650703" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#2c2c00;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="396.18164"
+       y="982.64758"
+       id="text4207-4"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4209-9"
+         x="396.18164"
+         y="982.64758"
+         style="font-size:20px;fill:#2c2c00;fill-opacity:1">whole milk</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer7"
+     inkscape:label="human skin">
+    <path
+       style="display:inline;opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#2c2c00;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:8, 4;stroke-dashoffset:0"
+       d="m 169.51593,474.71763 c 0.78968,16.797 69.01424,22.80955 104.78108,23.13628 38.54324,0.3521 113.55412,-10.58257 113.35136,-22.86527 -0.30199,-18.29314 -73.76771,-28.30682 -112.37682,-28.06996 -36.44872,0.22361 -106.55685,10.75621 -105.75562,27.79895 z"
+       id="path4149-4-7"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="sasas"
+       inkscape:export-xdpi="96.650703"
+       inkscape:export-ydpi="96.650703" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#2c2c00;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="201.78435"
+       y="513.77319"
+       id="text4207-4-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4209-9-0"
+         x="201.78435"
+         y="513.77319"
+         style="font-size:20px;fill:#2c2c00;fill-opacity:1">human skin</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer8"
+     inkscape:label="coffee">
+    <path
+       style="display:inline;opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#00ba72;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:8,4;stroke-dashoffset:0"
+       d="m 334.39391,324.53767 c 0.78968,16.797 18.25899,26.29742 32.0501,26.16674 13.34102,-0.12642 30.72161,-13.61303 30.51885,-25.89573 -0.30199,-18.29314 -15.49407,-29.66781 -29.54431,-30.09026 -14.825,-0.44575 -33.82587,12.77651 -33.02464,29.81925 z"
+       id="path4149-4-7-3"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="sasas"
+       inkscape:export-xdpi="96.650703"
+       inkscape:export-ydpi="96.650703" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#00d381;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="336.25626"
+       y="366.797"
+       id="text4207-4-6-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4209-9-0-6"
+         x="336.25626"
+         y="366.797"
+         style="font-size:20px;fill:#00d381;fill-opacity:1">coffee</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer9"
+     inkscape:label="glycerin soap">
+    <path
+       style="display:inline;opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#58cde2;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:8,4;stroke-dashoffset:0"
+       d="m 656.65373,274.87181 c 0.35611,11.10288 11.30878,19.33722 41.9765,18.90997 23.15146,-0.32253 37.47877,-9.5326 37.76145,-16.96535 0.32557,-8.56049 -4.35677,-20.7104 -36.41924,-20.43107 -34.20995,0.29804 -43.585,10.18383 -43.31871,18.48645 z"
+       id="path4149-1-5-8"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="sssss"
+       inkscape:export-xdpi="96.650703"
+       inkscape:export-ydpi="96.650703" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#57cce2;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="596.42444"
+       y="311.91034"
+       id="text4207-0-0-6"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="596.42444"
+         y="311.91034"
+         style="font-size:20px;fill:#57cce2;fill-opacity:1"
+         id="tspan4242-4-6">glycerin soap</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer10"
+     inkscape:label="robitussin"
+     style="display:inline">
+    <path
+       style="display:inline;opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#faff35;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:8, 4;stroke-dashoffset:0"
+       d="m 576.65123,59.691731 c 0.23274,21.41598 21.94776,46.690509 43.35251,47.421989 22.75567,0.77764 48.87117,-24.388708 49.42279,-47.150979 C 669.99418,36.539336 644.40349,8.5483725 620.97828,9.0356384 598.54575,9.5022556 576.4074,37.255669 576.65123,59.691731 Z"
+       id="path4149-4-7-0"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="aaaaa"
+       inkscape:export-xdpi="96.650703"
+       inkscape:export-ydpi="96.650703" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#f1ff31;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       x="573.91968"
+       y="122.67588"
+       id="text4207-4-6-11"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4209-9-0-3"
+         x="573.91968"
+         y="122.67588"
+         style="font-size:20px;fill:#f1ff31;fill-opacity:1">robitussin</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer11"
+     inkscape:label="red wine">
+    <path
+       style="display:inline;opacity:1;fill:none;fill-opacity:1;fill-rule:evenodd;stroke:#ff3535;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:8,4;stroke-dashoffset:0"
+       d="m 95.07088,73.523057 c 0.964223,16.952804 1.628538,47.832893 18.60377,47.421993 17.29342,-0.4186 16.51454,-31.872982 16.59283,-49.171288 0.0929,-20.519426 -2.1831,-59.218493 -19.15382,-58.503248 C 94.382317,13.97567 93.890662,52.77268 95.07088,73.523057 Z"
+       id="path4149-4-7-0-6"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="aaasa"
+       inkscape:export-xdpi="96.650703"
+       inkscape:export-ydpi="96.650703" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:40px;line-height:125%;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;display:inline;fill:#ff3434;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;"
+       x="99.915474"
+       y="137.01228"
+       id="text4207-4-6-11-1"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan4209-9-0-3-6"
+         x="99.915474"
+         y="137.01228"
+         style="font-size:20px;fill:#ff3434;fill-opacity:1;">red wine</tspan></text>
+  </g>
+</svg>

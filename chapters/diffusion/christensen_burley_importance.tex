@@ -1,6 +1,5 @@
 \section{Christensen-Burley BSSRDF profile importance sampling}
 \label{section:burley_importance}
-
 Importance sampling of the BSSRDF function is a vital part of the rendering system used in practical
 applications. The short theory of importance sampling is given in the section
 \ref{ImportanceSampling}. Together with the disc sampling technique described in chapter
@@ -50,14 +49,13 @@ One of the possible solution to the problem of importance sampling of BSSRDF con
 two exponential functions is sampling each of the summand independently and combining the results.
 
 Hence, two functions to be used to distribute samples:
-\samepage{
 \[
 pdf_1(r)=\frac{s}{2\pi r}e^{-rs}
 \]
 \[
 pdf_2(r)=\frac{s/3}{2\pi r}e^{\frac{-rs}{3}}
 \]
-}
+
 Note, that additional $\frac{1}{2\pi r}$ factor is used in the implementation PDF to account for
 sampling over the area of the disc. The corresponding \gls{CDF}s and sampling radii:
 \[

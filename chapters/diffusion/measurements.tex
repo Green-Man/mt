@@ -2,20 +2,20 @@
 \section{Applicability of Diffusion approximation}
 \label{chapter:measurements}
 
-The Diffusion approximation theory and BSSRDF model of rendering SSS materials has some strong
-limitations for the optical properties of the materials (absorption coefficient, scattering
-coefficient, and phase function) to be rendered and even geometric shape of the bounding
+The Diffusion approximation theory and BSSRDF model for rendering of the subsurface scattered
+materials has some strong limitations regarding the optical material properties (absorption
+coefficient, scattering coefficient, and phase function) and even geometric shape of the bounding
 objects.
 
-The restrictions on high volumetric albedo, high scattering and isotropism of the media makes it
-impossible to render a full range of real world scattering materials with diffusion approximation.
+The restrictions on high volumetric albedo, high scattering and isotropic properties of the media
+makes it impossible to render a full range of real world scattering materials with diffusion
+approximation.
 There are some studies about the applicability of the Diffusion approximation with the descriptions
-of the limitations of this approach from practical point of view on supported materials
-\cite{Donner:2009:EBM}, \cite{Gkioulekas:2013:URP:2516971.2516972},
-\cite{Zhao:2014:HSR:2601097.2601104}. But these bounds on material properties are usually described
-only in general terms.
+of the limitations of this approach from practical point of view \cite{Donner:2009:EBM},
+\cite{Gkioulekas:2013:URP:2516971.2516972}, \cite{Zhao:2014:HSR:2601097.2601104}. But these bounds
+on material properties are usually described only in general terms.
 
-In this section we describe one more way to define the limitations of Diffusion approximation  by
+In this section we describe another way to define the limitations of Diffusion approximation  by
 estimating the difference with reference Monte Carlo rendered images and utilizing the the results
 of measured properties of real media available in the literature.
 
@@ -23,23 +23,25 @@ of measured properties of real media available in the literature.
 Searchlight experiment is a ubiquitous setup used in a number of research papers for developing
 and analysing algorithms of light transport simulation in participating media. It is described in
 section \ref{section:searchlight} and used for curve fitting and algorithm analysis in previous
-section of this chapter. Being a simple and predictable model, it is far from the complexity
+section of this chapter. Being a simple and predictable model, it is far from the complexity of the 
 practical applications in production computer graphics.
 
-Another approach was chosen here to measure visual consistency between the images rendered with
-Diffusion approximation and references. In this work we have conducted simulations, similar to the
-error measurements used in \cite{Zhao:2014:HSR:2601097.2601104}. We rendered a wide range of
-images containing a single object, while changing it's optical properties within a reasonable range
-of possible values. The characteristic scale of the object was taken into account.
+In this work we have conducted simulations, similar to the error measurements used in
+\cite{Zhao:2014:HSR:2601097.2601104}. We rendered a wide range of images containing a single,
+relatively complex geometric object, while changing it's optical properties within a reasonable
+range of possible values. The characteristic scale of the object is taken into account while
+choosing the meaningful properties range.
 
-In contrast to the above mentioned work, we used ($1/\sigma_s, 1/\sigma_a$) space, as only
-isotropic materials are interesting in our case of study. The difference between reference image and
-Diffusion approximation rendered image represents one point in this space. The final results are
-shown at the figure \ref{fig:material_props}.
+In contrast to the above mentioned work, we used ($1/\sigma_s, 1/\sigma_a$) space, as only materials
+with isotropic phase function are the primary interest of our study. The difference between
+reference image and the image rendered with Diffusion approximation represents one point of this
+space. More on the method of calculating the difference see the section
+\ref{section:error_measure} The final results are shown at the figure \ref{fig:material_props}.
 
 To reveal the quantitative limitations of Diffusion approximation we used two relatively complex
-geometric models under two lighting conditions: a single side area light and an image based light
-with HDR photos.
+geometric models: Buckle and Dragon (figure \ref{fig:measurements_models}) under two lighting
+conditions:
+a single side area light and an image based light with HDR photos.
 
 To make a conclusion about the limitations of the Diffusion approximation we rendered the
 materials with absorption and scattering distances within the range of : $1/\sigma_a \in
@@ -92,29 +94,33 @@ between two images \emph{Normalized Cross-Correlation} was used:
 \[
 NCC = \frac{\sum_{x,y} (f(x,y)-\bar{f})(g(x,y)-\bar{g})}{N\sigma_f\sigma_g}
 \]
-
 where $f$ and $g$ are 2d functions $\bar{f}, \bar{g}$ are their mean values, $\sigma_f,\sigma_g$
 respective standard deviations and $N$ is a number of pixels in case of images as a 2d functions.
 
 General case of Cross-Correlation is often used for template matching in image processing. But in
 our case it helps to measure the difference between two functions $f$ and $g$ regardless of their
 mean value. Thus, it allows us to compute the error measure between various pairs of images
-independent of their absolute average brightness. For the purpose of better representation and
-visualization of the results, we re-parametrized the NCC value in the following way:
-\[
+independent of their absolute average brightness. However, using only the \gls{NCC} for measuring
+the error is not enough. For the purpose of better representation and visualization of the results,
+we re-parametrized the NCC value in the following way:
+\begin{equation}
+\label{eq:cvalue}
 C = \frac{\bar{f}}{\bar{g}}\frac{NCC^2-0.8}{0.2}
-\]
+\end{equation}
 
-It helps to represent the images with correlation only higher than 0.8 within the range [0,1].
+This form helps to represent the images exposing the correlation with their reference only higher
+than 0.8 within the range [0,1].
 The reason for this is that pairs with the NCC value lower than 0.8 are appeared to be unacceptable
-visually wrong.
+visually wrong and can be discarded.
 The factor $\bar{f}/\bar{g}$ is the ratio between average image brightness. It accounts for
 relative difference of the Diffusion approximation image with the reference, not the absolute
 difference, like in RMS case.
 
 While using this metric, the images which appear very similar to their reference are represented by
-C-value close to 1. And relatively wrong rendered images are having zero or near zero C-values
-fig.\ref{fig:both_set}. The path traced reference images are shown on the left.
+C-value \ref{eq:cvalue} close to 1. And relatively wrong rendered images are having zero or near
+zero C-values. Take a look at figure \ref{fig:both_set} for some examples of good and bad
+correlation.
+The path traced reference images are shown on the left.
 \begin{figure}[h]
     \centering
     \begin{subfigure}{0.48\textwidth}
@@ -138,16 +144,13 @@ fig.\ref{fig:both_set}. The path traced reference images are shown on the left.
     \end{subfigure}
     \caption{Two geometric shapes under two light setups. Left images of each pair is rendered using
     path tracing, right with Diffusion approximation. Examples of good and bad correlation using
-    C-value metric from section
-    \ref{section:error_measure}}
+    C-value metric \ref{eq:cvalue}}
     \label{fig:both_set}
 \end{figure}
 
-
 \subsection{Results of the simulations and discussion}
 \label{section:measurements_results}
-In this section we present the generalized results of the measurements described in two previous
-sections.
+Here we present the generalized results of the measurements described in two previous sections.
 
 To visualize the data we have chosen to plot the minimum correlation value for every given point out
 of 4 different setups (2 models with 2 lighting conditions). In the other words, the worst output is
@@ -157,31 +160,35 @@ choose the worst measure.
 
 As seen on the figure \ref{fig:material_props}, the parameter space is roughly divided into two
 regions. Samples with parameters from the dark red region have shown poor similarity with the Monte
-Carlo references mostly due to high transparency of the objects with $\sigma_s<1 mm^{-1}$
-independent of the absorption of the material. Decreasing the scattering even more (top and top
-right out of the graph) will lead to the pure glasses with no noticeable scattering. These materials
-are not intended to be rendered with Diffusion approximation.
+Carlo references mostly due to high transparency of the objects with $\sigma_s<1 mm^{-1}$,
+independent of the absorption coefficient of the material. Decreasing of the scattering even more
+(i.e. increasing of the scattering distance $1/\sigma_s$) will lead to the pure glasses with no
+noticeable scattering. This case would represent top and top right regions out of the graph limits.
+These materials are not intended to be rendered with Diffusion approximation. The 
 
-Materials with high absorption and low scattering (top left corner) do not look transparent. But the
-high error and low correlation in this case may be explained by the fact that the low albedo
-materials are poorly approximated by Diffusion approximation in general.
+Materials with low scattering at the top left corner are not transparent due to the high absorption.
+But the high error and low correlation in this case may be explained by the fact that the low albedo
+materials are poorly approximated by Diffusion approximation in general. The order values of
+$\alpha=\sigma_s/(\sigma_s+\sigma_a)$ in that region is about 0.1-1\%.
 
 Lower part of the graph stands for highly scattering materials with mean free scattering path length
 much smaller than the characteristic scale of the object's geometric details. This means the light
 experience many scattering events before leaving the surface. As expected, these points display high
 correlation. The effect of low albedo in the bottom lower corner does not exposed too much. The
-lowest volumetric albedo value $\alpha=\sigma_s/(\sigma_s+\sigma_a)=0.9$  in that region. The
-regions far left out of the plot would represent too dark objects regardless of the rendering
-method. The space far bottom out of the graph would stand for the objects with so much scattering
-contribution, that it is impractical to render them with BSSRDF model. The classical BRDF approach
-will result in the same output avoiding complicated SSS computation.
+lowest volumetric albedo value $\alpha=\sigma_s/(\sigma_s+\sigma_a)=0.9$  in that region. Materials
+with their properties far left out of the plot would represent too dark objects regardless of the
+rendering method.
+The space far bottom out of the graph would stand for the objects with so much scattering
+contribution (i.e. very short mean free path length), that it is impractical to render them with
+BSSRDF model.
+The classical BRDF approach will result in the same output avoiding complicated SSS computation.
 
 \begin{figure}[h]
-    \includegraphics[width=\textwidth]{plots/matrix_isocontours}
-    \caption{Aggregated heat map of the SSS properties analysis. Minimal C-value correlation of four
-    experiments is color coded (see details at section \ref{section:error_measure}. While
-    approximate isocontour on the level of 0.4 is considered as threshold. All point below this
-    level represents the relatively good match of the Diffusion approximation and the reference) }
+    \includegraphics[width=\textwidth]{plots/matrix_isocontours} \caption{Aggregated heat map of the
+    SSS properties analysis. Minimal C-value correlation of four experiments is color coded (see
+    details at section \ref{section:error_measure}. Approximate isocontour on the level of 0.4 is
+    considered as threshold. All the point with correlation higher than this level represents the
+    relatively good match of the Diffusion approximation and the Monte Carlo reference}
     \label{fig:material_props}
 \end{figure}
 
@@ -208,10 +215,10 @@ that study allowed to take into account multiple scattering events and measure s
 possible to dilute.
 
 Selected data regions from all of these sources were used to estimate applicability of the Diffusion
-approximation. The following table shows the minimum and maximum values of mean free path absorption
-and scattering length out of different R,G or B channel. The plotted regions at figure
-\ref{fig:material_props_data} represent the approximate location of the material with respect of
-this bounds.
+approximation. The following table \ref{table:material_dataq} shows the minimum and maximum values
+of mean free path absorption and scattering length out of different R,G or B channel. The plotted
+regions at figure \ref{fig:material_props_data} represent the approximate location of the material
+with respect of this bounds.
 \begin{table}[h]
 \begin{tabu} to 0.6\textwidth { |l |c|c|c|c| c| }
     \hline
@@ -230,7 +237,8 @@ this bounds.
     robitussin & 200 & 500 & 20 & 83 & 0 \\ \hline
 \end{tabu}
 \caption{Data for the selected materials from the following sources
-\cite{Jensen:2001:PMS:383259.383319}, \cite{tariq_efficient_2006-1}, \cite{Narasimhan:2006:ASP:1141911.1141986},
+\cite{Jensen:2001:PMS:383259.383319}, \cite{tariq_efficient_2006-1},
+\cite{Narasimhan:2006:ASP:1141911.1141986},
 \cite{Gkioulekas:2013:IVR:2508363.2508377}.\newline $^*$ C-value for the whole milk is extrapolated}
 \label{table:material_data}
 \end{table}
@@ -239,7 +247,7 @@ From the plotted data in the figure \ref{fig:material_props_data} couple of conc
 made.
 
 First, the experiment matches the obvious expectation that materials with high transparency
-like glycerin soap, robitussin or diluted liquids like red wine or coffee are the bad candidates to
+like glycerin soap, robitussin or diluted liquids like red wine and coffee are the bad candidates to
 be rendered with Diffusion approximation.
 
 The lowest error to be expected from light and optically dense materials like milk soap, hand cream
@@ -252,7 +260,7 @@ complicated microscopic structure of the fat molecules in water makes it difficu
 by approximation.
 
 The human skin is located on the border of the acceptability. Dark skin is discarded due to
-the low albedo of the it's volume and surface. And even objects with the characteristics of the
+the low volume and surface albedo. And even objects with the characteristics of the
 bright human skin are expected to have serious differences with the brute force Monte Carlo
 simulated results.
 

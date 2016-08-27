@@ -17,10 +17,11 @@ of the object. Efficient sampling of that term is one of the fundamental topics 
 graphics. It is common problem both for rendering solid objects with BRDF approximation or SSS media
 with BSSRDF model. And it is not discussed here.
 
-The outer integral over the area, on the other hand, is a definitive part of the BSSRDF formulation.
-At each sample of this the area integration the inner integral over the hemisphere has to be
-calculated. This fact substantially increases complexity of the light transport simulation and make
-is especially important to optimize area sampling.
+The outer integral over the area, on the other hand, is a definitive part of the
+BSSRDF formulation. At each sample of the integration over the area, the inner
+integral over the hemisphere has to be calculated. This fact substantially increases complexity of
+the light transport simulation and make is especially important to optimize area
+sampling.
 
 Fast fade out of BSSRDF functions with distance allows, in practice, to avoid the integration over
 the whole object. Usually, only the local area around the shading position is integrated while still
@@ -40,9 +41,9 @@ described in the following sections.
     \begin{subfigure}{0.45\textwidth}
         \includegraphics[width=\textwidth]{schemes/sampling_naive_failing}
         \caption{Inaccurate sampling on curved geometry}
+        \label{fig:sampling_naive_fails}
     \end{subfigure}
     \caption{Classic disk area sampling}
-    \label{fig:sampling_naive_fails}
 \end{figure}
 
 The planar geometry assumption, described in the section \ref{section:BSSRDF_intuition} about the
@@ -52,13 +53,14 @@ it trivial to sample the area around the shading point to integrate SSS light co
 Classic approach of integrating the BSSRDF described by \cite{Jensen:2001:PMS:383259.383319} 
 produce very good approximation in the case of locally flat geometry. The approach is based on the
 sampling of the area of the disk located with it's center in the current shading point and oriented
-by normal to the surface. The naive approach would utilize the uniform distribution of samples over
-the area of the disk.
+by normal to the surface \ref{fig:sampling_naive}. The naive approach would
+utilize the uniform distribution of samples over the area of the disk.
 
 The light contribution $L$ is estimated by tracing the shadow ray to the light source and
 weighted by the BSSRDF value taking into account the distance $r$ between center of the disk and
 sampling position. This sampling technique produce very good approximation in case of the flat
-infinite plane object. But fails in any case of non-planar geometry.
+infinite plane object. But fails in any case of non-planar geometry
+\ref{fig:sampling_naive_fails}.
 
 A number of other sampling techniques where proposed in the literature to improve handling of
 complex geometries. Some examples are Multiresolution radiosity caching

@@ -12,39 +12,34 @@
 \section*{Part I: Introduction and Theory}
 
 \textbf{ Chapter 1: Introduction}\\
-This chapter defines the the scope of the work. The high level
-overview of the Monte Carlo methods which are used during the study and
-implemented.
-The description of the light simulation in the participting media and possible
-variance reduction techniques takes place from the general point of view
-whithout mathematical formalism. An overview of the advantages and limitations
-of the each of the method for practical use is also given in this chapter.
+The first chapter defines the the scope of the work. The high level overview of the Monte Carlo
+methods which are used during the study and implemented.
+The description of the light simulation in the participating media and possible variance reduction
+techniques takes place from the general point of view without mathematical formalism. An overview of
+the advantages and limitations of the each of the method for practical use is also given in this
+chapter.
 
 \textbf{Chapter 2: Theory}\\
-Chapter 2 contains theorical summary of the Monte Carlo methods with attention
-on such concepts, which are important in the context of this work, such
-as light integration, importance sampling and multiple importance sampling.
-Theory of the in ligth transport in participating media with emission,
-attenuation and scattering laws.
-The theoretical intoduction into the diffusion theory and diffusion
-approximation approach of light integration in participating media.
+Chapter 2 contains theoretical summary of the Monte Carlo methods with attention on such concepts,
+which are important in the context of this work, such as light integration, importance sampling and
+multiple importance sampling.
+Theory of the light transport in participating media with emission, attenuation and scattering laws.
+The theoretical introduction into the diffusion theory and diffusion approximation approach of light
+integration in participating media.
 
 %--------------------------------------------------------------------
 \section*{Part II: Implementation and results}
 
-\textbf{ Chapter 3: Pathtracing integrator and Next Event Estimation}\\
-Here the pathtracing implementation details are discussed with additional Direct
-Light Sampling technique. Correctness of the method, and
-problems in practical usage. Comparison of the performance between two methods
-and the combination of them using MIS.
+\textbf{ Chapter 3: Path tracing integrator and Next Event Estimation}\\
+The path tracing implementation details are discussed here with additional Direct Light Sampling
+technique. Correctness of the method, and problems in practical usage such as numerical errors.
+Comparison of the performance between two methods and the combination of them using MIS.
 
 \textbf{ Chapter 4: Diffusion Approximation}\\
-The practical details of the implementation of the Diffusion Approximation
-light integrator. Sampling starategies and precomputed BSSRDFs. Special case of
-the Christenen Burley BSSRDF profile and fitting to Monte-Carlo references.
-Importance sampling of the precomputed profiles and and parametrization issues.
+The practical details of the implementation of the Diffusion Approximation light integrator.
+Sampling strategies and precomputed BSSRDFs. Special case of the Christenen-Burley BSSRDF profile
+and fitting to Monte-Carlo references. Importance sampling of the precomputed profiles and and
+parametrization issues.
 
-
-\textbf{ Chapter 5: Comparisons and measurements}\\
-Rendering of the measured materials. Comparisons between different
-implementations. Convergence graphs. \comment{$<$-Currently in TODO status}
+Special section of this chapter is dedicated to the study of the limitations of the Diffusion
+approximation from practical point of view.

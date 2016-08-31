@@ -1,12 +1,13 @@
-\section{Modification of the Christensen-Burley profile to better fit Monte
-Carlo references}
+\section{Modification of the Christensen-Burley profile}
 \label{section:cb_modification}
-Original formulation of the Christensen-Burley BSSRDF, first described in the Siggraph course notes
-\cite{Burley:disney_siggraph15} and enhanced in \cite{Christensen:2015:ARP:2775280.2792555}, is
-based on the fitting of the empirically chosen function to the Monte Carlo reference SSS renderings.
-That function contains the sum of two exponentials, $1/r$ factor and the normalization coefficient
-(equation \ref{eq:burley}):
-\[ R_d(r) = As\dfrac{e^{-sr}+e^{-sr/3}}{8\pi r} \]
+Original formulation of the Christensen-Burley BSSRDF, first described in the ACM Siggraph course
+notes \cite{Burley:disney_siggraph15} and enhanced in \cite{Christensen:2015:ARP:2775280.2792555},
+is based on the fitting of the empirically chosen function to the Monte Carlo reference SSS
+renderings. That function contains the sum of two exponentials, $1/r$ factor and the normalization
+coefficient (equation \ref{eq:burley}):
+\[
+R_d(r) = As\dfrac{e^{-sr}+e^{-sr/3}}{8\pi r}
+\]
 
 The exact form of scaling factor $s$ is also determined empirically. For searchlight configuration 
 it has the form:
@@ -85,9 +86,9 @@ Nevertheless, there are consistent results achieved for Searchlight experiment a
 experiments of simple geometric shapes between different implementations of Monte Carlo integrators.
 Three independently developed approaches were compared:
 \begin{enumerate}
-  \item Unidirectional path tracing integrator in P2 (see overview in section
-  \ref{section:framework})
-  \item Next Event Estimation integrator in P2 (see overview in section \ref{section:framework}
+  \item Unidirectional path tracing integrator in P2
+  \item Next Event Estimation PTDL integrator in P2 (see overview in section
+  \ref{section:ptdl_implement})
   \item Mitsuba Volumetric Path Tracer \cite{Mitsuba}
 \end{enumerate}
 

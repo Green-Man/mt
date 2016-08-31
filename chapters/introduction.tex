@@ -13,21 +13,14 @@
 \label{section:BSSRDF_intuition}
 Formulate scattering in media in analogy to local surface reflectance (BRDF)
 
-\subsection{Single scattering and Multiple scattering}
-Decompose into single- and multiscattering terms
-
-\subsection{Double scattering paper}
-\cite{Donner:2009:EBM} model is the most accurate to date (2013), but it has a
-high memory cost (up to 250 MB for each material). It is also limited to a
-single lobe. \cite{holzschuch:hal-00760054} extends and completes Donner's
-study. They also provide a model that is less accurate, but much more compact
-and can represent multiple lobes.
+\subsection{Single- and Multiple scattering}
+Decomposition into single- and multiscattering terms
 
 \subsection{Searchlight problem formulation}
 \label{section:searchlight}
 Simplify model to the 'Searchlight Problem' to allow analytic solutions.
 Perpendicular light beam to infinite surface \cite{Jacques1995}
-(\gls{infiniteslab}) \begin{figure}[h]
+\begin{figure}[h]
     \centering
     \includegraphics[width=\textwidth]{imgs/schemes/searchlight_disney}
     \caption{Schematic view of the searchlight experiment. To change.}
@@ -43,30 +36,9 @@ Understanding of PF \cite{Gkioulekas:2013:URP:2516971.2516972}, Similarity theor
 \cite{Zhao:2014:HSR:2601097.2601104}, \cite{Gkioulekas:2013:IVR:2508363.2508377}
 \ldots
 
-\section{Donner's Empirical BSSRDF}
-This strange \gls{BSSRDF}
-\comment{I like the reasoning here}
-Donner et al. \cite{Donner:2009:EBM} claim that the sum of single scattering
-simulation and diffusion approximation (isotropic multiple scattering) does not
-able to capture materials with relatively large suspended particles (such as
-orange juice or milk). Because of the significant amount of light in scattered
-during to low-order scattering events and high absorption.
-These materials exhibit significant absorption of the light as it propagates
-through the material, so much of the energy is scattered back into
-the environment near the point of incidence. This light exits in areas and
-directions outside of the single scattering regime, but not in the high-order
-multiple scattering regime.
 
 
-In this work they use Monte Carlo particle tracing to tabulate an empirical
-BSSRDF model for a flat surface on a homogeneous semi-infinite volume.
-They represented the hemispherical distribution of light leaving the surface,
-depending on the angle of the incident light, the relative position of the
-excitant light, and the physical parameters (volume albedo, mean free path
-length, phase function, and index of refraction). The tables took months to
-compute and contain around 250MB of data.
-
-\section{Scattering in the thin objects}
+\section{Scattering in thin objects}
 Diffuse transmission BTDF is a fast approximation of subsurface scattering
 in thin materials.
 Many real world objects like sheets of paper or foliage of the trees has strong

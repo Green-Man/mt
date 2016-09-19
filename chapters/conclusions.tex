@@ -1,18 +1,17 @@
 \chapter{Conclusions and summary}
-The practical aspects of light simulation in participating media were studied during the work on
-this Master thesis from the practical point of view. We assumed, that a large number of applications
-fall into the limited scope of materials, described as dense, isotropic media without refractive
-boundary.
+This master thesis describes several aspects of the light simulation in participating media from
+practical point of view. The main focus is on the applications which require the rendering of the
+dense, isotropic media without refractive boundary.
 
-As the correctness of the rendered image can be a key factor in certain applications, the unbiased
-Monte Carlo method have to be employed. We showed that the classic unidirectional volumetric path
-tracing can be enhanced by the adding Next Event Estimation in participating media. This PTDL
-sampling method proved to be beneficial in certain scenarios and have to be combined with brute
-force path tracing to be used in production rendering solutions (section
-\ref{section:ptdl_implement}).
+Unbiased Monte Carlo methods have to be employed in cases where the correctness of the rendered
+image is key factor. We showed that the classic unidirectional volumetric path tracing can be
+enhanced by the addition of the Next Event Estimation technique in participating media.
+This PTDL sampling method proved to be beneficial in certain lighting scenarios. To be used in
+robust production rendering solutions it has to be combined with classical brute force path tracing
+estimator (section \ref{section:ptdl_implement}).
 
-The problems of numerical cancellations of path tracing estimators could alter the expected
-estimation in the special cases of highly scattered media using Russian Roulette.
+The problems of numerical cancellations of the path tracing estimators could alter the expected
+results in the special cases of highly scattered media using Russian Roulette.
 The proposed empirical technique gives an estimation on the limits of the path termination
 probability parameter to avoid energy loss due to numerical errors (section
 \ref{section:numerical}).
@@ -20,12 +19,13 @@ probability parameter to avoid energy loss due to numerical errors (section
 In the cases when the correctness of the simulation is not the main goal, the approximations to the
 unbiased methods can be used to achieve better convergence time. The Diffusion Approximation is one
 the most popular methods used in the industry for rendering SSS materials. One of the recent
-researches in this field by Brent Burley and Per Christensen proposed the efficient BSSRDF profile
-as precomputed solution. In our work we studied the proposed profile by comparison of the
-approximated solutions with the references and proposed alternative form of this profile (section
-\ref{section:cb_modification}) and parametrization (\ref{section:cb_parametrization}). Two methods
-of importance sampling of this BSSRDF were also implemented and studied. The numerical root finding
-showed to be the preferable way of CDF inversion (section \ref{section:burley_importance}).
+researches in this field by Brent Burley and Per Christensen proposed in 2015 the efficient BSSRDF
+profile as precomputed solution. In our work we studied the original profile by comparison of the
+approximated solutions with the references. The alternative alternative form of this profile is
+proposed (section \ref{section:cb_modification}) with suitable parameterization
+(\ref{section:cb_parametrization}). Two methods of the importance sampling of this BSSRDF were also
+implemented and studied. The numerical root finding showed to be the preferable way of CDF inversion
+(section \ref{section:burley_importance}).
 
 According to the approximative nature of the precomputed diffusion method of SSS rendering, the
 certain application domain have to be defined. Only the materials within limited range of properties

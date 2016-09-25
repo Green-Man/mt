@@ -1,22 +1,30 @@
 \section{Scope of the topic}
 \label{section:scope}
-In this paper I study Monte Carlo rendering of the subsurface scattering
-materials, both in the context of light simulation and approximate rendering.
-The main interest is in the correctness of the methods and the
-consistency of the results between them. With the discussion of the optimisation
-techniques applicable in certain scenarios.
 
-I focus on the methods of the rendering of highly scattering isotropic materials
-which usually appear as optically thick objects.
+Recent achievements in the approximations of reflective and refractive materials with Bidirectional
+Reflectance Distribution Functions and decoupling it from the light integration made a big step in
+the physically based visualization \cite{pharr2010physically}. Together with a modern hardware, it
+is now possible to visualize a wide range of scenarios required by everyday tasks in engineering,
+marketing and visual effects domains. The absence of the a big number of ad-hoc parameters allows to
+start rendering without labour intensive manual preparations needed in the past for certain
+algorithms \cite{DBLP:conf/mam/KettnerRSJK15}.
 
-These are examples of the materials which, in most cases, meet this condition.
+But the rendering of the subsurface scattered materials remains a bottleneck for most of the light
+transport simulation scenarios. In this paper I study Monte Carlo rendering of the subsurface
+scattering materials, both in the context of light simulation and approximate rendering.
+The main interest is in the correctness of the methods and the consistency of the results between
+them. With the discussion of the optimisation techniques applicable in certain scenarios.
+
+I focus on the methods of the rendering of highly scattering isotropic materials which usually
+appear as optically thick objects.
+
+These are examples of the materials which, in most cases, meet this condition:
 \begin{itemize}
     \item Non-organic
     \begin{itemize}
         \item Marble (polished, rough, dusty)
         \item Plastics or waxes
         \item Snow
-        \item Thin sheets (paper, foliage, cloth)
         \item Non photo real (Cartoon style and stylisation)
     \end{itemize}
     \item Organics

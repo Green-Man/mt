@@ -36,28 +36,41 @@ infinite random walks to be terminated without bias \cite{Veach:1998:RMC:927297}
 \label{section:light_simulation_theory}
 \subsection{Emission, Absorption and Scattering}
 
-\subsection{Phase function and Henyey-Greenstein approximation}
+\subsection{Isotropic and Anisotropic phase functions}
 \label{section:phasefunction}
-\cite{Gkioulekas:2013:IVR:2508363.2508377} made a great user study.
-Take home notes from it: \gls{hg} is not general enough (can't represent some
-materials). Uniform parametrization needs requires to expose $g^2$ to the user.
 
-\emph{TODO: while inroducing phase function, try to render single photon inside
-the media and visualize it with plotly as Andreas did in pseudo 3d. To illustrate
-random walk directions with different Henyey-Greenstein \textbf{g}.}
+The simplest isotropic phase function i.e. the probability density of the scattering in the given
+direction has the form:
+\[
+p(\Theta) = \frac{1}{4\pi}
+\]
+which of course does not depends on the angel and is constant in any direction.
 
-\section{The Diffusion Approximation}
-Applies to the highly scattering media: relation to the Central Limit Theorem.
-The underlying approach is similar to using a normal distribution for the sum of
-random variables.
-In the latter setting, the central limit theorem permits one to replace the analytically intractable sum of random variables by
-an appropriately chosen normal random variable.
+The form of the phase function in the anisotropic scattering becomes more complex. The number of
+sources have shown \cite{0031-9155-51-17-N04}, \cite{Gkioulekas:2013:URP:2516971.2516972} that the
+Heynye-Greenstein function fits reasonably well for approximation complex phase function of many
+organic or artificial materials:
+\begin{align}
+\label{eq:hg_pdf_theory}
+p(\Theta) = \frac{1}{4\pi}\cdot\frac{1-g^2}{1+g^2-2g(\cos{\Theta})^{3/2}}
+\end{align}
+where $\Theta$ is an angle between incident and scattered directions of the particle, $g$ is the
+anisotropy factor. $g$ has it's values in the range from -1 to 1 for back or front scattering
+materials respectively. The anisotropy factor describes the characteristic number of the scattering
+events after which the information of the initial incident direction is lost
+\cite{wang2007biomedical}.
 
-Probably first description is \cite{Stam1995}
-Main paper: A Practical Model for Subsurface Light Transport \cite{Jensen:2001:PMS:383259.383319}
+Even though there is a common approximation for reduced scattering coefficient:
+\[
+\sigma\prime_s = \sigma_s(1 - g)
+\]
+the sections regarding Diffusion Approximation in this work only describe rendering of the isotropic
+materials.
 
-Geometric assumption on the surface as a flat, semi-infinite slab at (any
-point). This is reasonable only if scattering distance is small with respect to
-surface curvature and thickness. \textbf{Multiple scattering} diffusion
-component is approximately determined. The \textbf{single scattering} is
-separately integrated.
+Despite the fact that Heynye-Greenstein phase function is widely used in many rendering application
+the work \cite{Gkioulekas:2013:IVR:2508363.2508377} showed a big user study pointing some failing
+cases of this approximation due to the lack of generality of the Heynye-Greenstein function. Another
+conclusion from this research is that anisotropy parameter has higly non-linear effect on the
+rendered output and it suggested to be exposed to the users as $g^2$.
+
+\input{chapters/theory/diffusion_approximation}

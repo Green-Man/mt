@@ -1,26 +1,18 @@
-\section{Overview}
-\label{section:overview}
-Rendering of the SSS is a big problem in rendering. Bottleneck material for
-scenes.
+%\section{Overview}
+%\label{section:overview}
+The context of the rendering application always dictate the constraints applied to the methods and
+algorithms used by the software for the image generation.
+Modern approaches to realistic rendering could be roughly divided into distinct groups:
+physically based rendering (light simulation approach) and plausible rendering (approximate
+rendering, phenomenological approach). I will use the terms light transport simulation and simply,
+rendering, interchangeably in this work.
 
-The context of the rendering application always dictate the constraints
-applied to the methods and algorithms used by the software for the image generation.
-Modern approaches to realistic rendering could be roughly divided into distinct
-groups:
-physically based rendering (light simulation approach) and plausible rendering
-(approximate rendering, phenomenological approach).
+Physically based rendering tries to simulate interaction of the light and matter taking into account
+the laws of physics and our theoretical knowledge about the nature.
 
-I will use the terms light transport simulation and simply, rendering,
-interchangeably in this work.
+Plausible rendering, on the other hand, is intended to mimic optical effects observed by the human
+eye or captured by camera, accounting the audience perception.
 
-Physically based rendering tries to simulate interaction of the light and matter
-taking into account the laws of physics and our theoretical knowledge about the
-nature.
-
-Plausible rendering, on the other hand, is intended to mimic optical effects
-observed by the human eye or captured by camera accounting the audience
-perception.
-
-Monte Carlo methods of the light simulation are usually perceived as
-physically based methods. Sometimes they are also used for relatively fast way
-to achieve desired plausible results regardless of the physical correctness.
+Monte Carlo methods of the light simulation are usually perceived as physically based methods.
+Sometimes they are also used for relatively fast way to achieve desired plausible results regardless
+of the physical correctness.

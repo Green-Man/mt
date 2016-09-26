@@ -97,7 +97,7 @@ estimation of the integral, this time at r’.
 algorithm.
 
 \subsection{Volumetric path tracing with Next Event Estimation}
-The idea of direct liqght sampling can be applied to the volumetric path tracing as well.
+The idea of direct light sampling can be applied to the volumetric path tracing as well.
 The generalized theory of \gls{BDPT} in participating media was first described by Lafortune ans
 Willems in \cite{Lafortune:1996:RPM:275458.275468}.
 
@@ -107,14 +107,14 @@ Preforming the direct light estimation from inside the media with the refractive
 be a non-trivial task.
 Due to the refraction on the boundary between materials with different index of refraction
 (\gls{IOR}), the light from the emitter to the scattering point never travels by a straight light.
-Except the casse of the normal incident rays. To satisfy the Fermat's principle \footnote{Fermat's
+Except the case of the normal incident rays. To satisfy the Fermat's principle \footnote{Fermat's
 principle or the principle of least time states that the path taken between two points by a ray of
 light is the path that can be traversed in the least time} we have to construct the path with the
 middle point somewhere on the boundary.
 
-To my knowledge, there are no robust and fast enough methods for solving this complication in
-general way. Although, there are considerable iterative approaches described in the literature
-during last years \cite{holzschuch:hal-01083246}, \cite{10.1111:cgf.12681}, \cite{Koerner2016}.
+There are no robust and fast enough methods for solving this complication in general way, to my
+knowledge. Although, there are considerable iterative approaches described in the literature during
+last years \cite{holzschuch:hal-01083246}, \cite{10.1111:cgf.12681}, \cite{Koerner2016}.
 
 In this work I have decided to consider the situation when the boundary refraction can be neglected.
 In the other words, the materials with \gls{IOR}=1.

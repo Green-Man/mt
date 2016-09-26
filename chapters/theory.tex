@@ -1,30 +1,72 @@
 \chapter{Theory}
 \label{chapter:theory}
 
-\section{Monte Carlo methods}
-\label{Monte-Carlo}
-\cite{Lafortune:1996:RPM:275458.275468} has short but decent description of the integrals on the
-surface and in the media to integrate using with Monte Carlo approach.
-A nice picture explaining BDPT is also there.
+\section{Monte-Carlo integration with importance sampling}
+\label{section:importance_sampling}
+According to the theory of the light transport, the behaviour of the light can be expressed by the
+equation of radiative transfer in homogeneous media \cite{Lafortune:1996:RPM:275458.275468}:
+\begin{equation}
+\label{rte}
+L_o(\vec{x_0}, \Theta) = \int_{A} \int_{\Omega} f(\vec{x}_i-\vec{x}_o,\omega_o,\omega_i)
+L_i(\vec{x}_i-\vec{x}_o, \omega_o, \omega_i) d\omega_i e^{-ks} + L_e(\vec{x}_i-\vec{x}_o, \omega_o)
+e^{-kd}
+\end{equation}
 
-\gls{MIS} overview.
-\subsection{Importance sampling}
-\label{ImportanceSampling}
-\emph{In order to reduce variance,  it is desirable to importance sample reflected rays by
-preferentially considering paths carrying high energy.} \emph{The benefit of stratified importance
-sampling  within  the  context  of  physically-based rendering  has  certainly  been  justified by 
-the  work  of Cook  [1986].   Since  Shirley demonstrated  how  to  efficiently  sample  the 
-traditional  Phong BRDF  [Shirley  1990]  and Lafortune  introduced  a  generalization of  this 
-cosine-lobe  model  [Lafortune  et  al.  1997], a  reasonable approach to importance sampling an
-arbitrary BRDF has been to sample  a  best-fit approximation  of  one  of  these  simpler  models.
-Although this technique marks a clear improvement over random sampling,  it has several drawbacks.
-First, it is not always trivial to approximate the many complex BRDFs that exist in nature with one
-of these models.}
+In this chapter we can proceed without detailed description of every part of the equation \ref{rte}.
+The main idea at this point is that computing of the relation between incoming and outgoing radiance
+requires double integration of complicated and almost arbitrary functions and, in general, has no
+analytical solution. This integral formulation is a good candidate for evaluation using Monte-Carlo
+technique.
+
+To evaluate the arbitrary integral of the form:
+\[
+I = \int_\Theta f(x) dx
+\]
+we have to evaluate the integrand function at the independent randomly sampled points $x_i$ such
+that $f_i = f(x_i)$. In case if the probability density function of the sampling is $p(x_i)$ and $N$
+number of samples is taken, the estimated value of the integral is \cite{hammersley64}:
+\begin{equation}
+\label{mc_estimator}
+\hat{I}=\frac{1}{N}\sum_{i=1}^N\frac{f(x_i)}{p(x_i)}
+\end{equation}
+
+In special case of uniformly sampled function the $p(x_i)=1$ and the Monte Carlo estimator
+\ref{mc_estimator} has a form of quadrature rule where the sampling points are chosen randomly
+instead of uniform grid:
+\begin{equation}
+\label{uniform_estimator}
+\hat{I}=\frac{1}{N}\sum_{i=1}^N f(x_i)
+\end{equation}
+
+The Monte Carlo integration is the main method of estimating the light transport integrals due to
+it's robustness regardless of the number of dimensions and the form of the integrand
+\cite{Veach:1998:RMC:927297}
+
+The uniform Monte Carlo estimator is often modified to reduce variance due to the slow $O(\sqrt{N})$
+convergence. It is desirable to find the sampling distribution $p(x_i)$ such that it has as close a
+possible form to the resulting integral $I$. This technique is called \emph{importance sampling}. In
+path tracing context it requites the sampling of the paths which carry the most of the light
+contribution to the resulting image. The problem of finding the right sampling for arbitrary
+probability density function can be a complicated task in general. One practical problem of this
+kind and possible solutions of it are discussed in the \ref{section:burley_importance} section of
+this thesis.
+
+\input{chapters/theory/mis}
 
 \subsection{Russian roulette}
 \label{subsection:rr}
-Not a variance reduction in mathematical sense. Strictly speaking, it it even
-increases the variance of the estimator. But reduces to cost of sampling in
+Russian Roulette was first described in \cite{hammersley64} as a method for termination of the
+random walks in neutron transport calculations. Even though it is used by computer graphics Monte
+Carlo estimators to produce unbiased result in shorter time, it is not a variance reduction
+technique in strict mathematical sense.
+
+The problem of long path termination can be naively solved by threshold. In this approach the
+path integration is stopped after the path weight reaches some particular small threshold value and
+contribution of such a path will no longer be noticeable. The main disadvantage of such method is
+the it always introduces a bias to the final result if the path termination threshold is
+considerably large.
+
+Strictly speaking, it it even increases the variance of the estimator. But reduces to cost of sampling in
 average \cite{Veach:1998:RMC:927297}, \cite{Csi03variancereduction}
 
 Russian roulette is an indispensable technique in transport calculations, since it allows otherwise

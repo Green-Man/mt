@@ -16,29 +16,20 @@ contribution of such a path will no longer be noticeable. The main disadvantage 
 that it always introduces a bias to the final result if the path termination threshold is
 considerably large.
 
-The idea of Russian Roullete is to terminate the path not according to fixed weight parameter but by
+The idea of Russian Roulette is to terminate the path not according to fixed weight parameter but by
 chance. Let's say $q_{rr}$ is the termination probability. Then for each sample the evaluation of
 the independent uniform distributed random number $\xi$ defines the outcome of the sample. If
 $\xi<q_{rr}$ then the path is terminated. If $\xi>q_{rr}$ the the sampling is continued with the
-path weight mutiplied by $1/(1-q_{rr})$. With further explanation in \cite{pharr2010physically}
+path weight multiplied by $1/(1-q_{rr})$. With further explanation in \cite{pharr2010physically}
 or \cite{Veach:1998:RMC:927297} this process can be expressed as :
 \[ F(x_i) = \begin{cases} 0 & \mbox{if } \xi<q_{rr} \\ F(x_i)/(1-q_{rr}) & \mbox{if } \xi>=q_{rr}
 \end{cases}
 \]
 
-Usually, the termination probability This strategy gives a 
-
 Strictly speaking, Russian Roulette even increases the variance of the estimator. But reduces to
 cost of sampling in average \cite{Veach:1998:RMC:927297}, \cite{Csi03variancereduction}
 
-
-\ldots
-
-\section{Light simulation in participating media}
-\label{section:light_simulation_theory}
-\subsection{Emission, Absorption and Scattering}
-
-\subsection{Isotropic and Anisotropic phase functions}
+\section{Isotropic and Anisotropic phase functions}
 \label{section:phasefunction}
 
 The simplest isotropic phase function i.e. the probability density of the scattering in the given
@@ -50,7 +41,7 @@ which of course does not depends on the angel and is constant in any direction.
 
 The form of the phase function in the anisotropic scattering becomes more complex. The number of
 sources have shown \cite{0031-9155-51-17-N04}, \cite{Gkioulekas:2013:URP:2516971.2516972} that the
-Heynye-Greenstein function fits reasonably well for approximation complex phase function of many
+Henyey-Greenstein function fits reasonably well for approximation complex phase function of many
 organic or artificial materials:
 \begin{align}
 \label{eq:hg_pdf_theory}
@@ -69,10 +60,8 @@ Even though there is a common approximation for reduced scattering coefficient:
 the sections regarding Diffusion Approximation in this work only describe rendering of the isotropic
 materials.
 
-Despite the fact that Heynye-Greenstein phase function is widely used in many rendering application
+Despite the fact that Henyey-Greenstein phase function is widely used in many rendering application
 the work \cite{Gkioulekas:2013:IVR:2508363.2508377} showed a big user study pointing some failing
-cases of this approximation due to the lack of generality of the Heynye-Greenstein function. Another
-conclusion from this research is that anisotropy parameter has higly non-linear effect on the
+cases of this approximation due to the lack of generality of the Henyey-Greenstein function. Another
+conclusion from this research is that anisotropy parameter has highly non-linear effect on the
 rendered output and it suggested to be exposed to the users as $g^2$.
-
-\input{chapters/theory/diffusion_approximation}

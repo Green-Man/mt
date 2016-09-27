@@ -16,14 +16,13 @@ The main interest is in the correctness of the methods and the consistency of th
 them. With the discussion of the optimisation techniques applicable in certain scenarios.
 
 I focus on the methods of the rendering of highly scattering isotropic materials which usually
-appear as optically thick objects.
-
-These are examples of the materials which, in most cases, meet this condition:
+appear as optically thick objects. These are examples of the materials which, in most cases, meet
+this condition:
 \begin{itemize}
     \item Non-organic
     \begin{itemize}
+        \item Plastics, rubbers or waxes
         \item Marble (polished, rough, dusty)
-        \item Plastics or waxes
         \item Snow
         \item Non photo real (Cartoon style and stylisation)
     \end{itemize}
@@ -40,32 +39,35 @@ These are examples of materials out of the scope:
     \item Fluids (air, fog, dust)
 \end{itemize}
 I consider only isotropic media which are modeled by means of geometric
-polygonal meshes. The constraint of the closed shape in not applicable to all
-the methods discussed and will be discussed later.
+polygonal meshes. I do not consider spectral scattering. Only monochromatic light is simulated.
+There are papers describing the efficient process of combined rendering of RGB spectrum with
+corresponding multiple importance sampling weights.
 
-I do not consider spectral scattering. Only monochromatic light is simulated.
-There are papers describing the process of combined rendering of RGB with
-corresponding importance sampling. To add.
+There were many publications in the recent years related to rendering of the Subsurface Scattering
+using a concept of the Photon Beam Diffusion \cite{Habel:2013:PBD:2600890.2600896}. This technique
+demonstrates significant results and robustness especially while in combination with other
+sampling approaches as UPBP \emph{Unifying Points, Beams, and Paths in Volumetric Light Transport
+Simulation} \cite{krivanek14upbp}.
 
-Why not to use cached data structures approach:
+Despite the high potential of the above mentioned approach, there are two main reasons why it is not
+described in my work.
+
+First, it is based on a Bidirectional Path Tracing
+\cite{Lafortune:1996:RPM:275458.275468}. Even though it is a powerful algorithm solving many
+complicated phenomenon, it usually requires very complex implementation and still not that
+ubiquitous among the available production rendering engines. 
+
+The second complication is the requirement of the additional precaching step as it is required for
+classic photon mapping approach or photon mapping for volumetric rendering \cite{Jensen:1998:ESL:280814.280925}.
+There are several disadvantages of using light caching for rendering:
 \begin{itemize}
-    \item{Ease of use for the user. Don't want to introduce a lot of control
-    parameters which often require the end user to learn the details of the
-    underlying algorithms}
-    \item{Undesired preprocessing step. Unfriendly to progressive rendering}
-    \item{Density of the generated point cloud (or other stucture) limits the
-    scope of the available parameters. It restrics the effective width of the
-    SSS by minimal distanse between points, for example. Point density $\approx$
-    mean free path}
-    \item{Possible flickering artifacts during animation}
+    \item{Undesired preprocessing step is unfriendly to progressive (iterative) rendering}
+    \item{Density of the generated point cloud (or other structure) limits the scope of the
+    available parameters. I.e. restricts the effective width of the SSS by minimal distance between
+    points such that point density $\approx$ mean free path length}
+    \item{Photon mapping introduce some extra control parameters which often require the end user to
+    learn the details of the underlying algorithms}
     \item{Additional memory requirements}
     \item{Workflow complications for storing additional data}
-\end{itemize}
-
-Other things to consiger while choosing method:
-\begin{itemize}
-  \item Lighting restrictions \emph{Analytic light} sources and \emph{area lights and IBL} friendly
-  \item Parametrization: Artist friendly or physically correct
-  \item Homogeneous or inhomogeneous
-  \item Performance. Is it suitable for real time application?
+    \item{Possible flickering artifacts during animation}
 \end{itemize}

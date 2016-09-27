@@ -47,13 +47,13 @@ described in the following sections.
 \end{figure}
 
 The planar geometry assumption, described in the section \ref{section:BSSRDF_intuition} about the
-basics of the BSSRDF and section \ref{section:searchlight} about the  Searchlight experiment, makes
-it trivial to sample the area around the shading point to integrate SSS light contribution.
+basics of the BSSRDF, makes it trivial to sample the area around the shading point to integrate SSS
+light contribution in ideal ideal case.
 
 Classic approach of integrating the BSSRDF described by \cite{Jensen:2001:PMS:383259.383319} 
 produce very good approximation in the case of locally flat geometry. The approach is based on the
 sampling of the area of the disk located with it's center in the current shading point and oriented
-by normal to the surface \ref{fig:sampling_naive}. The naive approach would
+by the normal to the surface \ref{fig:sampling_naive}. The naive approach would
 utilize the uniform distribution of samples over the area of the disk.
 
 The light contribution $L$ is estimated by tracing the shadow ray to the light source and
@@ -62,7 +62,7 @@ sampling position. This sampling technique produce very good approximation in ca
 infinite plane object. But fails in any case of non-planar geometry
 \ref{fig:sampling_naive_fails}.
 
-A number of other sampling techniques where proposed in the literature to improve handling of
+A number of other sampling techniques where proposed in the literature to improve handling of more
 complex geometries. Some examples are Multiresolution radiosity caching
 \cite{Christensen:2012:MRC:2343045.2343108} or Bidirectional Lightcuts
 \cite{Walter:2012:BL:2185520.2185555}. But yet non of them are robust enough to integrate the BSSRDF

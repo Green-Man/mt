@@ -3,22 +3,20 @@
 The Monte Carlo methods of light simulation based on the radiative transport equation use
 $\sigma_a$, $\sigma_s$ and $phase function$ as a set parameters defining the optical properties of
 the SSS materials \cite{chandrasekhar1960radiative}, \cite{pharr2010physically},
-\cite{Jensen:2001:PMS:383259.383319}. The physical meaning of these quantities is given in the
-theoretical section of this thesis \ref{section:light_simulation_theory}.
+\cite{Jensen:2001:PMS:383259.383319}.
 
 This chapter covers only the case of isotropic media. That is why the phase function is assumed to
 be constant. The short overview of an anisotropic media and complex phase function approximations
-can be found in the sections \ref{section:phasefunction} and
-\ref{section:phasefunction_approximation}.
+can be found in the sections \ref{section:phasefunction} and \ref{section:ptdl_implement}.
 
 In contrast to the Monte Carlo methods, BSSRDF profiles for the Diffusion approximation, relay on
 the surface albedo (diffuse surface reflectance) parameter $A$ of the material:
 \[ A = \int\limits_0^\infty R(r)2\pi r dr \]
 
-Which has the meaning of the integral amount of the outgoing radiant exitance over whole area of the
-object relative to the overall incoming irradiance. In order to maintain consistent parametrization
-for different SSS integration techniques, the physically based parameters $\sigma_a$ and $\sigma_s$
-have to be mapped to the surface albedo $A$ used by Diffusion Approximation.
+Which has the meaning of the integral amount of the outgoing radiant exitance over the whole area of
+the object relative to the overall incoming irradiance. In order to maintain consistent
+parametrization for different SSS integration techniques, the physically based parameters $\sigma_a$
+and $\sigma_s$ have to be mapped to the surface albedo $A$ used by Diffusion Approximation.
 
 As an intermediate representation of the physically based parameters I use volumetric scattering
 albedo: $\alpha = \sigma_s/\sigma_t = \sigma_s/(\sigma_s + \sigma_a)$. This parametrization is

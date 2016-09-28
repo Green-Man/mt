@@ -21,11 +21,15 @@ This work discusses path tracing with Next Event Estimation approach for renderi
 isotropic media without refractive boundaries and compare it to the classic unidirectional path
 tracing.
 
-The numerical issues caused by the large number of scattering events inside the media and the
-proposed solutions are given. Another big part of the thesis is dedicated to the Diffusion
-approximation with BSSRDF shading model. We propose the improvement for Christensen-Burley
-precomputed profile and show empirical parametrization approach to improve consistency with Monte
-Carlo references.
+Possible numerical issues caused by the large number of scattering events during path tracing with
+large number of steps inside the media are described. The empirical solutions to overcome those
+problems are given.
+
+Another big part of the thesis is dedicated to the Diffusion Approximation with BSSRDF shading
+model. We propose the improvement for Christensen-Burley precomputed profile and show empirical
+parametrization approach to improve consistency with Monte Carlo references. Two variants of the
+importance sampling of Christensen-Burley profile were implemented with comparison suggesting the
+beneficial method.
 
 The heuristic approach of defining the limitations of Diffusion approximation and relation to the
 real world measured data is shown in the last chapter.
